@@ -4,13 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>SMIS</title>
-
-
+    <title>SMIS - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <nav class="menu">
+        <img src="img/ubt1.png" alt="UBT Logo" id="nav-logo">
+        <div>
+            <button class="menu-btn" onclick="window.location.href='index.html'">Home</button>
+            <button class="menu-btn" onclick="window.location.href='pages/about.html'">About Us</button>
+            <button class="menu-btn" onclick="window.location.href='pages/students.html'">Students</button>
+            <button class="menu-btn" onclick="window.location.href='pages/contact.html'">Contact</button>
+            <button class="menu-btn" onclick="window.location.href='pages/login.html'">Login</button>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Welcome to SMIS</h1>
+        <p>Student Management Information System for UBT University</p>
+
+        <div class="main">
+            <div class="card" onclick="window.location.href='pages/students.html'">
+                <img src="img/studenti.jpg" alt="Students">
+                <span class="card-title">Students</span>
+            </div>
+            <div class="card">
+                <img src="img/libri.jpg" alt="Courses">
+                <span class="card-title">Courses</span>
+            </div>
+            <div class="card">
+                <img src="img/tavolina.jpg" alt="Exams">
+                <span class="card-title">Exams</span>
+            </div>
+        </div>
+
+        <div class="announcements">
+            <h2>Announcements</h2>
+            <div id="announcements-list"></div>
+        </div>
+    </div>
+
+    <footer class="footer"></footer>
     
 </body>
-
-<script src="./js/main.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
 </html>
