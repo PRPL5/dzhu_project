@@ -78,7 +78,6 @@ h1 {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(20px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
 }
 
@@ -106,14 +105,6 @@ h1 {
         radial-gradient(circle at 20% 10%, rgba(0, 94, 202, 0.05) 0%, transparent 40%),
         radial-gradient(circle at 80% 90%, rgba(118, 75, 162, 0.04) 0%, transparent 40%);
     pointer-events: none;
-}
-
-.card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 40px 100px rgba(0, 94, 202, 0.2),
-        0 15px 40px rgba(0, 0, 0, 0.12),
-        0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card img {
@@ -491,6 +482,181 @@ h1 {
     opacity: 0.8;
 }
 
+/* About Page Styles */
+.about-hero {
+    background: linear-gradient(to right, #146AD4 0%, #0D5AB8 100%);
+    padding: 100px 20px 120px;
+    text-align: center;
+    color: white;
+    position: relative;
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+
+.hero-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.about-hero h1 {
+    font-size: 3.8rem;
+    margin-bottom: 24px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    font-weight: 400;
+    opacity: 0.92;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.about-intro {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 40px 20px 0;
+}
+
+.about-intro h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #005ECA;
+}
+
+.about-intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #444;
+}
+
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
+    margin: -50px auto 80px;
+    max-width: 1200px;
+    padding: 0 40px;
+    position: relative;
+    z-index: 10;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 16px;
+    padding: 45px 25px;
+    text-align: center;
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.08),
+        0 2px 8px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 94, 202, 0.1);
+}
+
+.stat-card:hover {
+    box-shadow: 
+        0 20px 60px rgba(0, 94, 202, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+    border-color: rgba(0, 94, 202, 0.3);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, #146AD4, #0D5AB8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.section-subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 40px;
+    margin-top: -10px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin: 50px auto;
+    max-width: 1200px;
+    padding: 0 40px;
+}
+
+.feature-box {
+    background: white;
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid #f0f0f0;
+}
+
+.feature-box:hover {
+    border-color: #146AD4;
+    box-shadow: 0 8px 25px rgba(20, 106, 212, 0.1);
+}
+
+.feature-box h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.feature-box p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+.mission-vision-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 40px;
+    margin: 60px auto;
+    max-width: 1200px;
+    padding: 0 40px;
+}
+
+.mv-card {
+    background: linear-gradient(145deg, #f8f9fc 0%, #ffffff 100%);
+    padding: 50px 40px;
+    border-radius: 16px;
+    border-left: 5px solid #146AD4;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+.mv-card:hover {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.mv-header {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #146AD4;
+}
+
+.mv-card p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #444;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .menu {
@@ -570,6 +736,41 @@ h1 {
     .action-buttons {
         padding: 20px;
     }
+
+    .about-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .about-intro h2 {
+        font-size: 2rem;
+    }
+
+    .stats-section {
+        margin: -30px 20px 60px;
+        padding: 0 20px;
+    }
+
+    .stat-card {
+        padding: 35px 20px;
+    }
+
+    .stat-number {
+        font-size: 2.8rem;
+    }
+
+    .features-grid,
+    .mission-vision-section {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .mission-vision-section {
+        gap: 25px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -595,5 +796,45 @@ h1 {
     .learn-more-btn {
         padding: 12px 30px;
         font-size: 0.9rem;
+    }
+
+    .about-hero {
+        padding: 60px 20px 80px;
+    }
+
+    .about-hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .about-intro h2 {
+        font-size: 1.6rem;
+    }
+
+    .about-intro p {
+        font-size: 1rem;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .feature-box {
+        padding: 30px 20px;
+    }
+
+    .mv-card {
+        padding: 35px 25px;
+    }
+
+    .mv-header {
+        font-size: 1.6rem;
     }
 }
