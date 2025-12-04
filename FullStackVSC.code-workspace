@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "FullStackVSC",
+			"path": "../../../FullStackVSC"
+		},
+		{
+			"name": "Ushtrime 6",
+			"path": "../Ushtrime 6"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "FullStackVSC"
+	}
+}
