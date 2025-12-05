@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/orari.css">
+    <title>SMIS - Orari</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="menu">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo">
+        <div>
+            <button class="menu-btn" onclick="window.location.href='main.html'">Home</button>
+            <button class="menu-btn" onclick="window.location.href='studenti.html'">Studenti</button>
+            <button class="menu-btn" onclick="window.location.href='profili.html'">Profile</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.html'">Provimet</button>
+        </div>
+    </nav>
+    
+    <div class="about-hero">
+        <div class="hero-content">
+            <h1>Class Schedule</h1>
+            <p class="hero-subtitle">Your weekly class timetable at UBT University</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="schedule-wrapper">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Time</th>
+                        <th>Monday</th>
+                        <th>Tuesday</th>
+                        <th>Wednesday</th>
+                        <th>Thursday</th>
+                        <th>Friday</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-slot">08:00 - 09:30</td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Computer Science</strong>
+                                <span>Room 301</span>
+                                <span>Prof. A. Smith</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Mathematics</strong>
+                                <span>Room 205</span>
+                                <span>Prof. B. Johnson</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Physics</strong>
+                                <span>Room 401</span>
+                                <span>Prof. C. Williams</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time-slot">10:00 - 11:30</td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Database Systems</strong>
+                                <span>Room 302</span>
+                                <span>Prof. D. Brown</span>
+                            </div>
+                        </td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Web Development</strong>
+                                <span>Room 303</span>
+                                <span>Prof. E. Davis</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Data Structures</strong>
+                                <span>Room 304</span>
+                                <span>Prof. F. Miller</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-slot">12:00 - 13:30</td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Algorithms</strong>
+                                <span>Room 305</span>
+                                <span>Prof. G. Wilson</span>
+                            </div>
+                        </td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Software Engineering</strong>
+                                <span>Room 306</span>
+                                <span>Prof. H. Moore</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Computer Networks</strong>
+                                <span>Room 307</span>
+                                <span>Prof. I. Taylor</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="time-slot">14:00 - 15:30</td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Operating Systems</strong>
+                                <span>Room 308</span>
+                                <span>Prof. J. Anderson</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Artificial Intelligence</strong>
+                                <span>Room 309</span>
+                                <span>Prof. K. Thomas</span>
+                            </div>
+                        </td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Machine Learning</strong>
+                                <span>Room 310</span>
+                                <span>Prof. L. Jackson</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                    </tr>
+                    <tr>
+                        <td class="time-slot">16:00 - 17:30</td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Cybersecurity</strong>
+                                <span>Room 311</span>
+                                <span>Prof. M. White</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                        <td class="class-cell">
+                            <div class="class-info">
+                                <strong>Mobile Development</strong>
+                                <span>Room 312</span>
+                                <span>Prof. N. Harris</span>
+                            </div>
+                        </td>
+                        <td class="class-cell empty"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer class="footer"></footer>
+</body>
+</html>

@@ -201,7 +201,7 @@ h3 {
 
 /* Payment Table */
 .payment-table {
-    overflow-x: auto;
+    width: 100%;
 }
 
 .payment-table table {
