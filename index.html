@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>SMIS - Home</title>
+    <title>SMIS - Student Management Information System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -14,37 +14,67 @@
         <img src="img/ubt1.png" alt="UBT Logo" id="nav-logo">
         <div>
             <button class="menu-btn" onclick="window.location.href='index.html'">Home</button>
-            <button class="menu-btn" onclick="window.location.href='pages/about.html'">About Us</button>
-            <button class="menu-btn" onclick="window.location.href='pages/students.html'">Students</button>
+            <button class="menu-btn" onclick="window.location.href='pages/about.html'">About</button>
+            <button class="menu-btn" onclick="window.location.href='pages/best-students.html'">Top Students</button>
             <button class="menu-btn" onclick="window.location.href='pages/contact.html'">Contact</button>
             <button class="menu-btn" onclick="window.location.href='pages/login.html'">Login</button>
         </div>
     </nav>
+    
     <div class="about-hero">
         <div class="hero-content">
-            <h1>Welcome to SMIS</h1>
-            <p class="hero-subtitle">Student Management Information System for UBT University</p>
+            <h1>UBT University SMIS</h1>
+            <p class="hero-subtitle">Modern Student Management Information System - Manage everything in one place</p>
         </div>
     </div>
-    <div class="container">
 
-        <div class="main">
-            <div class="card" onclick="window.location.href='pages/students.html'">
-                <img src="img/studenti.jpg" alt="Students">
-                <span class="card-title">Students</span>
+    <div class="container">
+        <div class="about-intro">
+            <h2>Welcome to Your Digital Campus</h2>
+            <p>Access everything you need for your academic journey at UBT University. From course management to exam schedules, all in one intuitive platform.</p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-box" onclick="window.location.href='pages/login.html'" style="cursor: pointer;">
+                <h3>Student Portal</h3>
+                <p>Access your personal dashboard, grades, schedule, and payment information</p>
             </div>
-            <div class="card">
-                <img src="img/libri.jpg" alt="Courses">
-                <span class="card-title">Courses</span>
+            <div class="feature-box" onclick="window.location.href='pages/about.html'" style="cursor: pointer;">
+                <h3>About UBT</h3>
+                <p>Learn about our mission, vision, and academic departments</p>
             </div>
-            <div class="card">
-                <img src="img/tavolina.jpg" alt="Exams">
-                <span class="card-title">Exams</span>
+            <div class="feature-box" onclick="window.location.href='pages/best-students.html'" style="cursor: pointer;">
+                <h3>Top Students</h3>
+                <p>Celebrating academic excellence and outstanding achievements</p>
+            </div>
+            <div class="feature-box" onclick="window.location.href='pages/contact.html'" style="cursor: pointer;">
+                <h3>Get in Touch</h3>
+                <p>Contact our support team for assistance and inquiries</p>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number">5000+</div>
+                <div class="stat-label">Active Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Departments</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Faculty Members</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">98%</div>
+                <div class="stat-label">Success Rate</div>
             </div>
         </div>
 
         <div class="announcements">
-            <h2>Announcements</h2>
+            <h2>Latest Announcements</h2>
+            <p class="section-subtitle">Stay updated with the latest news and events from UBT University</p>
             <div id="announcements-list"></div>
         </div>
     </div>
