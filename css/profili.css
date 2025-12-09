@@ -1,10 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     min-height: 100vh;
-}   
+}
 
 h1 {
     text-align: center;
@@ -408,14 +412,18 @@ h3 {
 }
 
 @media (max-width: 768px) {
+    .profile-container {
+        padding: 0 20px 50px;
+    }
+
     .academic-info-section {
         flex-direction: column;
     }
-    
+
     .payment-summary {
         flex-direction: column;
     }
-    
+
     .method-list {
         grid-template-columns: 1fr;
     }

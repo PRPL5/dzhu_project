@@ -1,10 +1,14 @@
+* {
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
     background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
     min-height: 100vh;
-}   
+}
 
 h1 {
     text-align: center;
@@ -322,13 +326,27 @@ h1 {
     .provimet-container {
         flex-direction: column;
     }
-    
+
     .filters-section {
         flex: 1;
         max-width: 100%;
     }
-    
+
     .filter-card {
         position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .provimet-container {
+        padding: 0 20px 50px;
+    }
+
+    .exams-card {
+        padding: 25px 20px;
+    }
+
+    .filter-card {
+        padding: 25px 20px;
     }
 }
