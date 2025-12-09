@@ -1,11 +1,15 @@
+* {
+    box-sizing: border-box;
+}
+
 body{
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
-}   
+}
 
 .container {
-    max-width: 1400px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 40px 20px;
 }
@@ -417,27 +421,29 @@ h1 {
 .footer {
     margin-top: 80px;
     width: 100%;
-    min-height: 130px;
+    min-height: 180px;
     background-color: rgb(20, 106, 212);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     color: #fff;
-    padding: 30px 20px;
+    padding: 40px 20px;
 }
 
 .footer::before {
-    content: '© 2025 UBT University - Student Management Information System';
+    content: '© 2025 UBT - Universiteti për Biznes dhe Teknologji | Student Management Information System';
     font-size: 1rem;
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .footer::after {
-    content: 'All Rights Reserved';
-    font-size: 0.9rem;
-    opacity: 0.8;
+    content: 'Prishtinë, Kosovo | Tel: +383 38 541 400 | Email: info@ubt-uni.net | All Rights Reserved';
+    font-size: 0.85rem;
+    opacity: 0.9;
+    text-align: center;
 }
 
 .about-hero {
