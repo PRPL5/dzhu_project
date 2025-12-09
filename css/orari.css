@@ -9,8 +9,9 @@
     background: white;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     border-collapse: collapse;
+    border: 2px solid #e0e0e0;
 }
 
 .schedule-table thead {
@@ -23,7 +24,7 @@
     text-align: center;
     font-size: 1.1rem;
     font-weight: 600;
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
 }
 
 .schedule-table th:last-child {
@@ -31,7 +32,7 @@
 }
 
 .schedule-table tbody tr {
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 2px solid #e0e0e0;
 }
 
 .schedule-table tbody tr:last-child {
@@ -42,7 +43,7 @@
     padding: 15px;
     text-align: center;
     vertical-align: top;
-    border-right: 1px solid #f0f0f0;
+    border-right: 3px solid #d0d0d0;
 }
 
 .schedule-table td:last-child {
@@ -55,15 +56,21 @@
     font-size: 0.95rem;
     background: #f8f9fc;
     min-width: 120px;
+    border-right: 4px solid #146AD4 !important;
 }
 
 .class-cell {
     min-width: 180px;
     height: 100px;
+    background: #ffffff;
+}
+
+.class-cell:nth-child(even) {
+    background: #fafbfc;
 }
 
 .class-cell.empty {
-    background: #fafbfc;
+    background: #f5f5f5;
 }
 
 .class-info {

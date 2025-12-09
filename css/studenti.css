@@ -71,9 +71,9 @@ h1 {
     flex: 1;
     max-width: 800px;
     box-shadow:
-        0 30px 80px rgba(0, 94, 202, 0.15),
-        0 12px 30px rgba(0, 0, 0, 0.1),
-        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 40px 100px rgba(0, 94, 202, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.12),
         inset 0 2px 1px rgba(255, 255, 255, 1),
         inset 0 -2px 1px rgba(0, 0, 0, 0.03);
     position: relative;
@@ -118,6 +118,13 @@ h1 {
     display: flex;
     margin-bottom: 15px;
     font-size: 1.1rem;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e8e8e8;
+}
+
+.info-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
 }
 
 .info-label {
@@ -142,9 +149,9 @@ h1 {
     align-items: center;
     justify-content: center;
     box-shadow:
-        0 30px 80px rgba(0, 94, 202, 0.15),
-        0 12px 30px rgba(0, 0, 0, 0.1),
-        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 40px 100px rgba(0, 94, 202, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.12),
         inset 0 2px 1px rgba(255, 255, 255, 1),
         inset 0 -2px 1px rgba(0, 0, 0, 0.03);
     position: relative;

@@ -12,7 +12,7 @@
     background: white;
     border-radius: 20px;
     padding: 40px 30px 35px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
     text-align: center;
     flex: 1;
     max-width: 320px;
@@ -22,7 +22,7 @@
 }
 
 .podium-place:hover {
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
     border-color: #146AD4;
 }
 
@@ -39,10 +39,22 @@
 
 .podium-place.second {
     margin-top: 30px;
+    border: 3px solid #C0C0C0;
+    box-shadow: 0 12px 45px rgba(192, 192, 192, 0.3);
+}
+
+.podium-place.second:hover {
+    box-shadow: 0 18px 55px rgba(192, 192, 192, 0.4);
 }
 
 .podium-place.third {
     margin-top: 50px;
+    border: 3px solid #CD7F32;
+    box-shadow: 0 10px 40px rgba(205, 127, 50, 0.3);
+}
+
+.podium-place.third:hover {
+    box-shadow: 0 15px 50px rgba(205, 127, 50, 0.4);
 }
 
 .rank-badge {
@@ -67,6 +79,22 @@
     box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
 }
 
+.rank-badge.silver {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    color: #333;
+    padding: 9px 22px;
+    font-size: 1.05rem;
+    box-shadow: 0 5px 18px rgba(192, 192, 192, 0.4);
+}
+
+.rank-badge.bronze {
+    background: linear-gradient(135deg, #CD7F32 0%, #B8733A 100%);
+    color: white;
+    padding: 8px 20px;
+    font-size: 1rem;
+    box-shadow: 0 5px 18px rgba(205, 127, 50, 0.4);
+}
+
 .student-avatar {
     width: 100px;
     height: 100px;
@@ -86,6 +114,20 @@
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
 }
 
+.student-avatar.silver {
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #C0C0C0 0%, #A8A8A8 100%);
+    box-shadow: 0 9px 28px rgba(192, 192, 192, 0.4);
+}
+
+.student-avatar.bronze {
+    width: 105px;
+    height: 105px;
+    background: linear-gradient(135deg, #CD7F32 0%, #B8733A 100%);
+    box-shadow: 0 8px 26px rgba(205, 127, 50, 0.4);
+}
+
 .avatar-text {
     color: white;
     font-size: 2.5rem;
@@ -95,6 +137,16 @@
 .gold .avatar-text {
     font-size: 3rem;
     color: #333;
+}
+
+.silver .avatar-text {
+    font-size: 2.8rem;
+    color: #333;
+}
+
+.bronze .avatar-text {
+    font-size: 2.6rem;
+    color: white;
 }
 
 .podium-place h3 {
@@ -130,6 +182,20 @@
     color: #FF8C00;
     font-size: 1.4rem;
     padding: 14px 24px;
+}
+
+.gpa-display.silver {
+    background: linear-gradient(135deg, #F5F5F5 0%, #E8E8E8 100%);
+    color: #666;
+    font-size: 1.3rem;
+    padding: 13px 22px;
+}
+
+.gpa-display.bronze {
+    background: linear-gradient(135deg, #FFF0E5 0%, #FFE8D6 100%);
+    color: #8B4513;
+    font-size: 1.25rem;
+    padding: 12px 20px;
 }
 
 .achievements {
