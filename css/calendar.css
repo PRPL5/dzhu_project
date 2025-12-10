@@ -1,0 +1,272 @@
+.calendar-header {
+    background: linear-gradient(135deg, #146AD4 0%, #0D5AB8 100%);
+    padding: 60px 20px;
+    text-align: center;
+    color: white;
+}
+
+.calendar-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.calendar-header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.calendar-container {
+    max-width: 1200px;
+    margin: -30px auto 60px;
+    padding: 0 20px;
+}
+
+.calendar-navigation {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 14px 30px;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    border-color: #146AD4;
+    color: #146AD4;
+    background: #f8f9fc;
+}
+
+.nav-btn.active {
+    background: #146AD4;
+    color: white;
+    border-color: #146AD4;
+}
+
+.semester-view {
+    display: none;
+}
+
+.semester-view.active {
+    display: block;
+}
+
+.semester-view h2 {
+    font-size: 2rem;
+    color: #222;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.calendar-section {
+    background: white;
+    border-radius: 16px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-section h3 {
+    font-size: 1.5rem;
+    color: #146AD4;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #f0f0f0;
+}
+
+.timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.event-item {
+    display: flex;
+    gap: 25px;
+    padding: 20px;
+    background: #f8f9fc;
+    border-radius: 12px;
+    border-left: 4px solid #146AD4;
+    transition: all 0.3s ease;
+}
+
+.event-item:hover {
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(20, 106, 212, 0.1);
+}
+
+.event-date {
+    min-width: 70px;
+    text-align: center;
+    background: white;
+    padding: 12px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.date-day {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #146AD4;
+    line-height: 1;
+}
+
+.date-month {
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.event-details {
+    flex: 1;
+}
+
+.event-details h4 {
+    font-size: 1.2rem;
+    color: #222;
+    margin-bottom: 8px;
+}
+
+.event-details p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.event-type {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.event-type.registration {
+    background: #d1ecf1;
+    color: #0c5460;
+}
+
+.event-type.deadline {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.event-type.classes {
+    background: #d4edda;
+    color: #155724;
+}
+
+.event-type.exam {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.event-type.holiday {
+    background: #e2d9f3;
+    color: #6f42c1;
+}
+
+.event-type.event {
+    background: #fce4ec;
+    color: #c2185b;
+}
+
+.quick-dates {
+    background: white;
+    border-radius: 16px;
+    padding: 35px;
+    margin-top: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.quick-dates h2 {
+    font-size: 1.8rem;
+    color: #222;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.quick-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.quick-card {
+    background: linear-gradient(145deg, #f8f9fc 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 30px;
+    text-align: center;
+    border: 2px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.quick-card:hover {
+    border-color: #146AD4;
+    box-shadow: 0 8px 25px rgba(20, 106, 212, 0.15);
+}
+
+.quick-card h3 {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.date-large {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #146AD4;
+    margin-bottom: 8px;
+}
+
+.quick-card p:last-child {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .calendar-header h1 {
+        font-size: 2rem;
+    }
+    
+    .event-item {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .event-date {
+        width: fit-content;
+    }
+    
+    .calendar-section {
+        padding: 25px 20px;
+    }
+    
+    .quick-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .calendar-navigation {
+        flex-direction: column;
+    }
+    
+    .nav-btn {
+        width: 100%;
+    }
+}
