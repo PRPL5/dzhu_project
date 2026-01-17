@@ -12,6 +12,9 @@ CREATE TABLE `user` (
     FOREIGN KEY (created_by) REFERENCES user(id) ON DELETE SET NULL
 );
 
+INSERT INTO `user` (username, email, password, role) VALUES
+('testuser', 'test@example.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user');
+
 CREATE TABLE product (
     id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(200) NOT NULL,
@@ -51,13 +54,4 @@ CREATE TABLE config (
     value LONGTEXT
 );
 
-INSERT INTO `user` (username, email, password, role) VALUES
-('admin', 'admin@dzhu.com', '$2y$10$E9g.j4pZ.N/1sE.Z/e.f.e.p.y.g.h.i.j.k.l.m.n.o.p.q.r.s.t', 'admin'),
-('user1', 'user1@dzhu.com', '$2y$10$YourHashedPasswordHere', 'user');
 
-INSERT INTO config (`key`, value) VALUES
-('about_text', 'Mire se vini ne faqen Rreth Nesh. Kompania jone eshte dedikuar te ofrojne sherbimet me te mira.'),
-('home_text', 'Webfaqja jone ofron produktet dhe sherbimet me te larta te cilesise.'),
-('company_name', 'DZHU'),
-('company_email', 'info@dzhu.com'),
-('company_phone', '+383 1 234 567');

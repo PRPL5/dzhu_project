@@ -1,16 +1,17 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 session_start();
 require_once '../config/config.php';
+require_once '../config/db.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $firstName = trim($_POST['first_name'] ?? '');
-    $lastName = trim($_POST['last_name'] ?? '');
+    $username = trim($_POST['username'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
     $confirmPassword = $_POST['confirm_password'] ?? '';
-    $username = $firstName . ' ' . $lastName;
 
-    if ($firstName && $lastName && $email && $password && $confirmPassword) {
+    if ($username && $email && $password && $confirmPassword) {
         if ($password !== $confirmPassword) {
             $error = "Fjalëkalimët nuk përputhen!";
         } else {
@@ -52,12 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="wrapper">
         <div class="card">
             <img src="../img/ubt1.png" alt="" id="login-logo">
-            <form class="login-form" action="#" method="post" autocomplete="off" id="register-form">
+            <form class="login-form" action="" method="post" autocomplete="off" id="register-form">
                 <?php if (isset($error)): ?>
                     <p class="error"><?php echo htmlspecialchars($error); ?></p>
                 <?php endif; ?>
-                <input type="text" name="first_name" id="first_name" placeholder="First Name" required>
-                <input type="text" name="last_name" id="last_name" placeholder="Last Name" required>
+                <input type="text" name="username" id="username" placeholder="Username" required>
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <input type="password" name="password" id="password" placeholder="Password" required>
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
@@ -68,5 +68,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <footer class="footer-navbar"></footer>
 </body>
-<script src="../js/register.js"></script>
 </html>
