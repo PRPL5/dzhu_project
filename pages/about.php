@@ -1,3 +1,16 @@
+<?php
+session_start();
+require_once '../config/config.php';
+require_once '../config/db.php';
+require_once '../src/Auth.php';
+require_once '../src/User.php';
+
+$auth = new Auth(userClass: new User(database: $pdo));
+$auth->requireLogin();
+$user = $auth->getCurrentUser();
+$stmt = $pdo->query("SELECT id, name, description FROM departments ORDER BY name ASC");
+$departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,15 +24,21 @@
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.html'" style="cursor: pointer;">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-        <button class="menu-btn" onclick="window.location.href='../index.html'">Home</button>
-        <button class="menu-btn" onclick="window.location.href='about.html'">About Us</button>
-        <button class="menu-btn" onclick="window.location.href='best-students.html'">Top Students</button>
-        <button class="menu-btn" onclick="window.location.href='contact.html'">Contact</button>
-        <button class="menu-btn" onclick="window.location.href='login.html'">Login</button>
-    </div>
+            <button class="menu-btn" onclick="window.location.href='../index.php'">Home</button>
+            <button class="menu-btn" onclick="window.location.href='about.php'">About Us</button>
+            <button class="menu-btn" onclick="window.location.href='best-students.php'">Top Students</button>
+            <button class="menu-btn" onclick="window.location.href='contact.php'">Contact</button>
+            <?php if (!$user): ?>
+                <button class="menu-btn" onclick="window.location.href='login.php'">Login</button>
+            <?php else: ?>
+                <span style="margin-left:10px;">Hello, <?= htmlspecialchars($user['name']); ?></span>
+                <button class="menu-btn" onclick="window.location.href='logout.php'">Logout</button>
+            <?php endif; ?>
+        </div>
     </nav>
+
     <div class="about-hero">
         <div class="hero-content">
             <h1>Rreth Universitetit UBT</h1>
@@ -85,12 +104,19 @@
         <div class="departments">
             <h2>Departamentet Akademike</h2>
             <p class="section-subtitle">Eksploroni gamën tonë të larmishme të programeve të dizajnuara për t'ju përgatitur për të ardhmen</p>
-            <div id="departments-list" class="departments-list"></div>
+            <div id="departments-list" class="departments-list">
+                <?php foreach ($departments as $dept): ?>
+                    <div class="department-card">
+                        <h3><?= htmlspecialchars($dept['name']); ?></h3>
+                        <p><?= htmlspecialchars($dept['description']); ?></p>
+                    </div>
+                <?php endforeach; ?>
+            </div>
         </div>
     </div>
 
     <footer class="footer"></footer>
-    
+
 </body>
 <script src="../js/main.js"></script>
 <script src="../js/about.js"></script>

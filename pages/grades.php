@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once '../config/config.php';
+require_once '../config/db.php';
+require_once '../src/Auth.php';
+require_once '../src/User.php';
+
+$auth = new Auth(new User($pdo));
+$auth->requireLogin();
+$user = $auth->getCurrentUser();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,22 +17,21 @@
     <link rel="stylesheet" href="../css/studenti.css">
     <link rel="stylesheet" href="../css/grades.css">
     <title>Grades - SMIS</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.html'" style="cursor: pointer;">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='studenti.html'">Dashboard</button>
-            <button class="menu-btn" onclick="window.location.href='orari.html'">Schedule</button>
-            <button class="menu-btn" onclick="window.location.href='orari.html'">Grades</button>
-            <button class="menu-btn" onclick="window.location.href='provimet.html'">Exams</button>
-            <button class="menu-btn" onclick="window.location.href='payments.html'">Payments</button>
-            <button class="menu-btn" onclick="window.location.href='calendar.html'">Calendar</button>
-            <button class="menu-btn" onclick="window.location.href='../index.html'">Logout</button>
+            <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
+            <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
+            <button class="menu-btn" onclick="window.location.href='grades.php'">Grades</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
+            <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
+            <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
+            <button class="menu-btn" onclick="window.location.href='../index.php'">Logout</button>
         </div>
     </nav>
 
@@ -57,10 +67,10 @@
         <div class="semester-selector">
             <h2>Zgjidhni Semestrin</h2>
             <div class="semester-tabs">
-                <button class="semester-tab active" onclick="showSemester('fall2024')">Vjeshta 2024</button>
-                <button class="semester-tab" onclick="showSemester('spring2024')">Pranvera 2024</button>
-                <button class="semester-tab" onclick="showSemester('fall2023')">Vjeshta 2023</button>
-                <button class="semester-tab" onclick="showSemester('spring2023')">Pranvera 2023</button>
+                <button class="semester-tab active" onclick="showSemester('fall2024', event)">Vjeshta 2024</button>
+                <button class="semester-tab" onclick="showSemester('spring2024', event)">Pranvera 2024</button>
+                <button class="semester-tab" onclick="showSemester('fall2023', event)">Vjeshta 2023</button>
+                <button class="semester-tab" onclick="showSemester('spring2023', event)">Pranvera 2023</button>
             </div>
         </div>
 
@@ -146,8 +156,8 @@
 
         <div class="semester-content hidden" id="spring2024">
             <div class="semester-info">
-                <h3>Spring 2024 - Shkenca e Kompjuterit</h3>
-                <span class="semester-gpa">Semester GPA: <strong>3.65</strong></span>
+                <h3>Pranvera 2024 - Shkenca e Kompjuterit</h3>
+                <span class="semester-gpa">GPA e Semestrit: <strong>3.65</strong></span>
             </div>
 
             <div class="grades-table">
@@ -216,94 +226,23 @@
             </div>
         </div>
 
-        <div class="grade-distribution">
-            <h2>Distribuimi i Notave</h2>
-            <div class="chart-container">
-                <div class="bar-chart">
-                    <div class="bar-item">
-                        <div class="bar-label">A</div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="width: 35%;" data-value="35%"></div>
-                        </div>
-                        <div class="bar-value">35%</div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label">A-</div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="width: 28%;" data-value="28%"></div>
-                        </div>
-                        <div class="bar-value">28%</div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label">B+</div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="width: 22%;" data-value="22%"></div>
-                        </div>
-                        <div class="bar-value">22%</div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label">B</div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="width: 12%;" data-value="12%"></div>
-                        </div>
-                        <div class="bar-value">12%</div>
-                    </div>
-                    <div class="bar-item">
-                        <div class="bar-label">B-</div>
-                        <div class="bar-wrapper">
-                            <div class="bar" style="width: 3%;" data-value="3%"></div>
-                        </div>
-                        <div class="bar-value">3%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="gpa-trend">
-            <h2>GPA Trend</h2>
-            <div class="trend-chart">
-                <div class="trend-line">
-                    <div class="trend-point" style="bottom: 55%;" data-semester="Fall 2023" data-gpa="3.45">
-                        <span class="point-dot"></span>
-                        <span class="point-label">3.45</span>
-                    </div>
-                    <div class="trend-point" style="bottom: 60%;" data-semester="Spring 2024" data-gpa="3.65">
-                        <span class="point-dot"></span>
-                        <span class="point-label">3.65</span>
-                    </div>
-                    <div class="trend-point" style="bottom: 70%;" data-semester="Fall 2024" data-gpa="3.78">
-                        <span class="point-dot"></span>
-                        <span class="point-label">3.78</span>
-                    </div>
-                </div>
-                <div class="trend-labels">
-                    <span>Vjeshta 2023</span>
-                    <span>Pranvera 2024</span>
-                    <span>Vjeshta 2024</span>
-                </div>
-            </div>
-        </div>
-
         <div class="action-buttons">
             <button class="action-btn primary" onclick="window.print()">Print Transcript</button>
             <button class="action-btn" onclick="alert('Veçoria e shkarkimit do të vijë së shpejti!')">Download PDF</button>
-            <button class="action-btn" onclick="window.location.href='studenti.html'">Back to Dashboard</button>
+            <button class="action-btn" onclick="window.location.href='studenti.php'">Back to Dashboard</button>
         </div>
     </div>
 
     <footer class="footer"></footer>
 
     <script>
-        function showSemester(semesterId) {
+        function showSemester(semesterId, event) {
             const allContent = document.querySelectorAll('.semester-content');
             allContent.forEach(content => content.classList.add('hidden'));
-            
             const allTabs = document.querySelectorAll('.semester-tab');
             allTabs.forEach(tab => tab.classList.remove('active'));
-            
             document.getElementById(semesterId).classList.remove('hidden');
-            
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
         }
     </script>
 </body>

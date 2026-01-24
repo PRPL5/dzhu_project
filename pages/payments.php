@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once '../config/config.php';
+require_once '../config/db.php';
+require_once '../src/Auth.php';
+require_once '../src/User.php';
+
+$auth = new Auth(new User($pdo));
+$auth->requireLogin();
+$user = $auth->getCurrentUser();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,22 +16,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/payments.css">
     <title>Payments - SMIS</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.html'" style="cursor: pointer;">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='studenti.html'">Dashboard</button>
-            <button class="menu-btn" onclick="window.location.href='orari.html'">Schedule</button>
-            <button class="menu-btn" onclick="window.location.href='grades.html'">Grades</button>
-            <button class="menu-btn" onclick="window.location.href='provimet.html'">Exams</button>
-            <button class="menu-btn" onclick="window.location.href='payments.html'">Payments</button>
-            <button class="menu-btn" onclick="window.location.href='calendar.html'">Calendar</button>
-            <button class="menu-btn" onclick="window.location.href='../index.html'">Logout</button>
+            <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
+            <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
+            <button class="menu-btn" onclick="window.location.href='grades.php'">Grades</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
+            <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
+            <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
+            <button class="menu-btn" onclick="window.location.href='../index.php'">Logout</button>
         </div>
     </nav>
 
@@ -36,7 +46,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="info-card">
                 <div class="info-item">
                     <div class="info-content">
@@ -50,7 +59,6 @@
         <div class="payment-section">
             <div class="payment-card">
                 <h2>Kartela Analitike e Pagesave</h2>
-                
                 <div class="payment-summary">
                     <div class="summary-item">
                         <span class="summary-label">Totali i Paguar:</span>
@@ -116,7 +124,6 @@
         <div class="billing-section">
             <div class="billing-card">
                 <h2>Informacione për Faturim</h2>
-                
                 <div class="billing-info">
                     <div class="billing-item">
                         <div class="billing-content">
@@ -158,7 +165,6 @@
     </div>
 
     <footer class="footer"></footer>
+    <script src="../js/main.js"></script>
 </body>
-
-<script src="../js/main.js"></script>
 </html>

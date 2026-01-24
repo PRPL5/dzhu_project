@@ -1,3 +1,14 @@
+<?php
+session_start();
+require_once '../config/config.php';
+require_once '../config/db.php';
+require_once '../src/Auth.php';
+require_once '../src/User.php';
+
+$auth = new Auth(new User($pdo));
+$auth->requireLogin();
+$user = $auth->getCurrentUser();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,15 +23,15 @@
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.html'" style="cursor: pointer;">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='studenti.html'">Dashboard</button>
-            <button class="menu-btn" onclick="window.location.href='orari.html'">Schedule</button>
-            <button class="menu-btn" onclick="window.location.href='grades.html'">Grades</button>
-            <button class="menu-btn" onclick="window.location.href='provimet.html'">Exams</button>
-            <button class="menu-btn" onclick="window.location.href='payments.html'">Payments</button>
-            <button class="menu-btn" onclick="window.location.href='calendar.html'">Calendar</button>
-            <button class="menu-btn" onclick="window.location.href='../index.html'">Logout</button>
+            <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
+            <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
+            <button class="menu-btn" onclick="window.location.href='grades.php'">Grades</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
+            <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
+            <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
+            <button class="menu-btn" onclick="window.location.href='../index.php'">Logout</button>
         </div>
     </nav>
     
