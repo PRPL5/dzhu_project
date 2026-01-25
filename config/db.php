@@ -4,7 +4,7 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'dzhu_db');
-echo 'Trying to connect to the database...';
+// echo 'Trying to connect to the database...';
 try {
     $pdo = new PDO(
         'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4',
@@ -16,7 +16,7 @@ try {
         ]
     );
 
-        echo 'Success'; 
+        // echo 'Success'; 
 } catch (PDOException $e) {
     die('Gabim në lidhjen me databazën: ' . $e->getMessage());
 }

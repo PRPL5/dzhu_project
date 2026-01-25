@@ -11,13 +11,13 @@
 </head>
 <body>
     <nav class="menu">
-        <img src="img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='index.html'" style="cursor: pointer;">
+        <img src="img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='index.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='index.html'">Home</button>
-            <button class="menu-btn" onclick="window.location.href='pages/about.html'">About Us</button>
-            <button class="menu-btn" onclick="window.location.href='pages/best-students.html'">Top Students</button>
-            <button class="menu-btn" onclick="window.location.href='pages/contact.html'">Contact</button>
-            <button class="menu-btn" onclick="window.location.href='public/login.html'">Login</button>
+            <button class="menu-btn" onclick="window.location.href='index.php'">Home</button>
+            <button class="menu-btn" onclick="window.location.href='pages/about.php'">About Us</button>
+            <button class="menu-btn" onclick="window.location.href='pages/studenti.php'">Top Students</button>
+            <button class="menu-btn" onclick="window.location.href='pages/contact.php'">Contact</button>
+            <button class="menu-btn" onclick="window.location.href='public/login.php'">Login</button>
         </div>
     </nav>
     
@@ -35,19 +35,19 @@
         </div>
 
         <div class="features-grid">
-            <div class="feature-box" onclick="window.location.href='public/login.html'" style="cursor: pointer;">
+            <div class="feature-box" onclick="window.location.href='public/login.php'" style="cursor: pointer;">
                 <h3>Portali i Studentit</h3>
                 <p>Qasuni në panelin tuaj personal, notat, orarin dhe informacionin e pagesave</p>
             </div>
-            <div class="feature-box" onclick="window.location.href='pages/about.html'" style="cursor: pointer;">
+            <div class="feature-box" onclick="window.location.href='pages/about.php'" style="cursor: pointer;">
                 <h3>Rreth UBT-së</h3>
                 <p>Mësoni rreth misionit, vizionit dhe departamenteve tona akademike</p>
             </div>
-            <div class="feature-box" onclick="window.location.href='pages/best-students.html'" style="cursor: pointer;">
+            <div class="feature-box" onclick="window.location.href='pages/studenti.php'" style="cursor: pointer;">
                 <h3>Studentët më të mirë</h3>
                 <p>Duke festuar shkëlqimin akademik dhe arritjet e jashtëzakonshme</p>
             </div>
-            <div class="feature-box" onclick="window.location.href='pages/contact.html'" style="cursor: pointer;">
+            <div class="feature-box" onclick="window.location.href='pages/contact.php'" style="cursor: pointer;">
                 <h3>Kontaktoni</h3>
                 <p>Kontaktoni ekipin tonë të mbështetjes për ndihmë dhe pyetje</p>
             </div>
