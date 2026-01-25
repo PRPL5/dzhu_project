@@ -13,7 +13,7 @@ async function loadStudents() {
             const program = programs.find(p => p.program_id === student.program_id);
             const studentDiv = document.createElement('div');
             studentDiv.className = 'student-card';
-            studentDiv.onclick = () => window.location.href = `student-details.html?id=${student.student_id}`;
+            studentDiv.onclick = () => window.location.href = `student-details.php?id=${student.student_id}`;
 
             studentDiv.innerHTML = `
                 <div class="student-name">${student.first_name} ${student.last_name}</div>

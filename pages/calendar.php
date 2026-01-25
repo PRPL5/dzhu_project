@@ -22,7 +22,7 @@ $user = $auth->getCurrentUser();
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='studenti.php'" style="cursor: pointer;">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
             <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
@@ -31,10 +31,10 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
             <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
             <?php if ($user): ?>
-                <span style="margin-left:10px;">Hello, <?= htmlspecialchars($user['name']); ?></span>
-                <button class="menu-btn" onclick="window.location.href='logout.php'">Logout</button>
+   
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
             <?php else: ?>
-                <button class="menu-btn" onclick="window.location.href='../index.php'">Login</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Login</button>
             <?php endif; ?>
         </div>
     </nav>

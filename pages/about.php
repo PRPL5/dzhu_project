@@ -28,13 +28,13 @@ $departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div>
             <button class="menu-btn" onclick="window.location.href='../index.php'">Home</button>
             <button class="menu-btn" onclick="window.location.href='about.php'">About Us</button>
-            <button class="menu-btn" onclick="window.location.href='best-students.php'">Top Students</button>
+            <button class="menu-btn" onclick="window.location.href='studenti.php'">Top Students</button>
             <button class="menu-btn" onclick="window.location.href='contact.php'">Contact</button>
             <?php if (!$user): ?>
-                <button class="menu-btn" onclick="window.location.href='login.php'">Login</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Login</button>
             <?php else: ?>
                 <span style="margin-left:10px;">Hello, <?= htmlspecialchars($user['name']); ?></span>
-                <button class="menu-btn" onclick="window.location.href='logout.php'">Logout</button>
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
             <?php endif; ?>
         </div>
     </nav>

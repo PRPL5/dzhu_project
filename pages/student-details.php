@@ -30,7 +30,7 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
             <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
             <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
-            <button class="menu-btn" onclick="window.location.href='../index.php'">Logout</button>
+            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
         </div>
     </nav>
 

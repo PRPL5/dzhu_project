@@ -22,7 +22,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
 
     if (email === 'admin@smis.com' && password === 'admin123') {
         alert('Login successful! Welcome Admin.');
-        window.location.href = 'main.html';
+        window.location.href = 'pages/main.php';
     } else {
         alert('Invalid credentials. (Demo: try admin@smis.com / admin123)');
     }
