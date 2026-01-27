@@ -29,9 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     setcookie('user_id', $user['id'], time() + (30 * 24 * 60 * 60), '/'); // 30 days
                 }
                 if ($user['role'] === 'admin') {
-                    header('Location: ../pages/grades.php');
+                    header('Location: ../admin/dashboard.php');
                 } else {
-                    header('Location: ../pages/grades.php');
+                    header('Location: ../pages/studenti.php');
                 }
                 exit;
             } else {

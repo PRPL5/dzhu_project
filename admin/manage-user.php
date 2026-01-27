@@ -1,15 +1,13 @@
 <?php
-session_start();
+$session_start = session_start();
 require_once '../src/Database.php';
 require_once '../src/User.php';
-
-// Check if user is logged in and is admin
-if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
-    header('Location: ../public/login.php');
-    exit;
-}
+require_once '../src/Auth.php';
 
 $db = new Database();
+$auth = new Auth(new User($db));
+$auth->requireAdmin();
+
 $userModel = new User($db);
 
 $message = '';
@@ -61,19 +59,178 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $action === 'edit' ? 'Ndrysho' : 'Fshi'; ?> Përdorues - DZHU Admin</title>
     <link rel="stylesheet" href="../css/styles.css">
+    <style>
+.navbar {
+    background-color: #146AD4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .menu li a:hover,
+.navbar .menu li a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+footer {
+    margin-top: 80px;
+    width: 100%;
+    min-height: 180px;
+    background-color: #146AD4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Additional styles for missing classes */
+.btn {
+    padding: 10px 20px;
+    background-color: #146AD4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+}
+
+.btn:hover {
+    background-color: #0D5AB8;
+}
+
+.btn-cancel {
+    background-color: #ccc;
+    color: black;
+}
+
+.btn-cancel:hover {
+    background-color: #bbb;
+}
+
+.btn-delete {
+    background-color: #d9534f;
+}
+
+.btn-delete:hover {
+    background-color: #c9302c;
+}
+
+.btn-edit {
+    background-color: #5cb85c;
+}
+
+.btn-edit:hover {
+    background-color: #4cae4c;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.users-table th, .users-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.users-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.user-form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">DZHU Admin</div>
-            <ul class="menu">
-                <li><a href="dashboard.php">Dashboard</a></li>
-                <li><a href="manage-products.php">Menaxho Produktet</a></li>
-                <li><a href="manage-news.php">Menaxho Lajmet</a></li>
-                <li><a href="manage-users.php" class="active">Menaxho Përdoruesit</a></li>
-                <li><a href="view-messages.php">Mesazhet</a></li>
-                <li><a href="../public/logout.php">Dalje</a></li>
-            </ul>
+    <?php $current = basename($_SERVER['PHP_SELF']); ?>
+    <nav class="menu">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='../index.php'" style="cursor: pointer;">
+        <div>
+            <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Dashboard</button>
+            <button class="menu-btn <?php echo $current=='manage-products.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-products.php'">Menaxho Produktet</button>
+            <button class="menu-btn <?php echo $current=='manage-news.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-news.php'">Menaxho Lajmet</button>
+            <button class="menu-btn <?php echo in_array($current, ['manage-users.php','manage-user.php']) ? 'active' : ''; ?>" onclick="window.location.href='manage-users.php'">Menaxho Përdoruesit</button>
+            <button class="menu-btn <?php echo $current=='manage-messages.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-messages.php'">Mesazhet</button>
+            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
         </div>
     </nav>
 

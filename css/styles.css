@@ -54,6 +54,11 @@ h1 {
     transform: translateY(-2px);
 }
 
+.menu-btn.active{
+    background-color: rgba(255,255,255,0.15);
+    transform: translateY(-2px);
+}
+
 .main {
     display: flex;
     justify-content: space-evenly;
@@ -798,5 +803,140 @@ h1 {
 
     .mv-header {
         font-size: 1.6rem;
+    }
+}
+
+/* Admin Dashboard Styles */
+.navbar {
+    background-color: #146AD4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar .menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar .menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .menu li a:hover,
+.navbar .menu li a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.stat {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 200px;
+    flex: 1;
+    max-width: 250px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.stat h3 {
+    margin: 0 0 10px 0;
+    color: #146AD4;
+    font-size: 1.2rem;
+}
+
+.stat p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+footer {
+    margin-top: 80px;
+    width: 100%;
+    min-height: 180px;
+    background-color: #146AD4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    .navbar .menu {
+        margin-top: 10px;
+    }
+
+    .navbar .menu li a {
+        padding: 10px 15px;
+    }
+
+    .dashboard-stats {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat {
+        width: 100%;
+        max-width: none;
+    }
+
+    .container {
+        padding: 20px 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
     }
 }
