@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (studentId) {
         loadStudentDetails(studentId);
     } else {
-        document.getElementById('student-info').innerHTML = '<p>Student not found.</p>';
+        document.getElementById('student-info').innerHTML = '<p>Student i pamundur të gjetur.</p>';
     }
 });
 
@@ -18,7 +18,7 @@ async function loadStudentDetails(studentId) {
         const payments = data.payment_history;
 
         if (!student) {
-            document.getElementById('student-info').innerHTML = '<p>Student not found.</p>';
+            document.getElementById('student-info').innerHTML = '<p>Student i pamundur të gjetur.</p>';
             return;
         }
 
@@ -49,19 +49,19 @@ async function loadStudentDetails(studentId) {
                 <span class="info-value">${student.email}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Phone:</span>
+                <span class="info-label">Telefoni:</span>
                 <span class="info-value">${student.phone}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Address:</span>
+                <span class="info-label">Adresa:</span>
                 <span class="info-value">${student.address}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Program:</span>
-                <span class="info-value">${program ? program.name : 'Unknown'}</span>
+                <span class="info-label">Programi:</span>
+                <span class="info-value">${program ? program.name : 'I PANJOHUR'}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Year of Study:</span>
+                <span class="info-label">Viti i Studimit:</span>
                 <span class="info-value">${student.year_of_study}</span>
             </div>
             <div class="info-row">
@@ -69,16 +69,16 @@ async function loadStudentDetails(studentId) {
                 <span class="info-value">${student.gpa}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Courses:</span>
-                <span class="info-value">${studentCourses || 'None'}</span>
+                <span class="info-label">Kurse:</span>
+                <span class="info-value">${studentCourses || 'Asnjë'}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Exam Results:</span>
-                <span class="info-value">${studentExams || 'None'}</span>
+                <span class="info-label">Rezultatet e Provimeve:</span>
+                <span class="info-value">${studentExams || 'Asnjë'}</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Payment History:</span>
-                <span class="info-value">${studentPayments || 'None'}</span>
+                <span class="info-label">Historia e Pagesave:</span>
+                <span class="info-value">${studentPayments || 'Asnjë'}</span>
             </div>
         `;
     } catch (error) {

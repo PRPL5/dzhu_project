@@ -5,12 +5,12 @@ require_once '../config/db.php';
 require_once '../src/Auth.php';
 require_once '../src/User.php';
 
-$auth = new Auth(new User($pdo));
+$auth = new Auth(new User($pdo), $pdo);
 $auth->requireLogin();
 $user = $auth->getCurrentUser();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +25,17 @@ $user = $auth->getCurrentUser();
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-        <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
-        <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
-        <button class="menu-btn" onclick="window.location.href='grades.php'">Grades</button>
-        <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
-        <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
-        <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
-        <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
+        <?php if ($auth->isAdmin()): ?>
+            <button class="menu-btn" onclick="window.location.href='../admin/dashboard.php'">Panou i Menaxhimit</button>
+        <?php else: ?>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
+            <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
+            <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
+            <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
+        <?php endif; ?>
+        <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
     </div>
     </nav>
     <div class="container">
@@ -40,7 +44,7 @@ $user = $auth->getCurrentUser();
 
         <div class="main">
 
-            <div class="card" onclick="window.location.href='studenti.php'" style="cursor: pointer;">
+            <div class="card" onclick="window.location.href='student-details.php'" style="cursor: pointer;">
                  <img src="../img/studenti.jpg" alt="">
                 <span class="card-title">Studenti</span>
             </div>
@@ -52,7 +56,7 @@ $user = $auth->getCurrentUser();
 
             <div class="card" onclick="window.location.href='payments.php'" style="cursor: pointer;">
                  <img src="../img/tavolina.jpg" alt="">
-                <span class="card-title">Payments</span>
+                <span class="card-title">Pagesat</span>
             </div>
         </div>
 
@@ -60,7 +64,7 @@ $user = $auth->getCurrentUser();
             <div class="info-text">
                 <h2>Lajme nga Shkencat Kompjuterike</h2>
                 <p>Te nderuar student ju lajmerojme qe afati i Nentorit do te mbahet me 6 Dhjetor ne UBT Dukagjini Te nderuar student ju lajmerojme qe afati i Nentorit do te mbahet me 6 Dhjetor ne UBT Dukagjini Te nderuar student ju lajmerojme qe afati i Nentorit do te mbahet me 6 Dhjetor ne UBT Dukagjini .</p>
-                <button class="learn-more-btn">Learn More</button>
+                <button class="learn-more-btn">Mësoni më shumë</button>
             </div>
             <div class="info-image">
                 <img src="../img/workspace.jpg" alt="placeholder">
@@ -72,9 +76,9 @@ $user = $auth->getCurrentUser();
                 <img src="../img/qyteti.jpg" alt="placeholder">
             </div>
             <div class="info-text">
-                <h2>Additional Information</h2>
+                <h2>Informacion Shtesë</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                <button class="learn-more-btn">Learn More</button>
+                <button class="learn-more-btn">Mësoni më shumë</button>
             </div>
         </div>
     </div>

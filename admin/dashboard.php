@@ -30,6 +30,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Inter", sans-serif;
+    height: 100vh;
+}
+
+.footer {
+    margin-top: 80px;
+    width: 100%;
+    min-height: 180px;
+    background-color: rgb(20, 106, 212);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 40px 20px;
 }
 
 .container {
@@ -130,10 +144,10 @@ footer {
     text-align: center;
 }
 
-footer p {
+/* footer p {
     margin: 0;
     font-size: 1rem;
-}
+} */
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -180,10 +194,11 @@ footer p {
         <nav class="menu">
             <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='../index.php'" style="cursor: pointer;">
             <div>
-                <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Dashboard</button>
+                <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Panou i Menaxhimit</button>
                 <button class="menu-btn <?php echo $current=='manage-news.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-news.php'">Menaxho Lajmet</button>
                 <button class="menu-btn <?php echo in_array($current, ['manage-users.php','manage-user.php']) ? 'active' : ''; ?>" onclick="window.location.href='manage-users.php'">Menaxho Përdoruesit</button>
-                <button class="menu-btn <?php echo $current=='manage-messages.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-messages.php'">Mesazhet</button>
+                <button class="menu-btn <?php echo $current=='manage-messages.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-messages.php'">Menaxho Mesazhet</button>
+                <button class="menu-btn <?php echo $current=='notifications.php' ? 'active' : ''; ?>" onclick="window.location.href='notifications.php'">Notifikimet</button>
                 <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
             </div>
         </nav>
@@ -192,7 +207,7 @@ footer p {
         </style>
 
     <main class="container">
-        <h1>Dashboard</h1>
+        <h1>Panou i Menaxhimit</h1>
         <p>Mirë se vini, <?php echo htmlspecialchars($auth->getCurrentUsername()); ?>!</p>
         <div class="dashboard-stats">
             <div class="stat">
@@ -214,7 +229,7 @@ footer p {
         </div>
     </main>
 
-    <footer>
+    <footer class="footer">
         <p>&copy; UBT. Të gjitha të drejtat e rezervuara.</p>
     </footer>
 </body>

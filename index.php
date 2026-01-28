@@ -1,10 +1,23 @@
+<?php
+session_start();
+require_once 'config/config.php';
+require_once 'config/db.php';
+require_once 'src/Auth.php';
+require_once 'src/User.php';
+
+$auth = new Auth(new User($pdo), $pdo);
+$isLoggedIn = $auth->isLoggedIn();
+$user = $auth->getCurrentUser();
+
+
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/styles.css">
-    <title>SMIS - Student Management Information System</title>
+    <title>SMIS - Sistemi i Menaxhimit të Studentëve</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -13,18 +26,28 @@
     <nav class="menu">
         <img src="img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='index.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='index.php'">Home</button>
-            <button class="menu-btn" onclick="window.location.href='pages/about.php'">About Us</button>
-            <button class="menu-btn" onclick="window.location.href='pages/studenti.php'">Top Students</button>
-            <button class="menu-btn" onclick="window.location.href='pages/contact.php'">Contact</button>
-            <button class="menu-btn" onclick="window.location.href='public/login.php'">Login</button>
+            <button class="menu-btn" onclick="window.location.href='index.php'">Kryefaqja</button>
+            <button class="menu-btn" onclick="window.location.href='pages/about.php'">Rreth Nesh</button>
+            <button class="menu-btn" onclick="window.location.href='pages/studenti.php'">Studentët më të Mirë</button>
+            <button class="menu-btn" onclick="window.location.href='pages/contact.php'">Kontakt</button>
+            <?php if ($isLoggedIn) : ?>
+                <?php if ($auth->isAdmin()) : ?>
+                    <button class="menu-btn" onclick="window.location.href='admin/dashboard.php'">Panou i Menaxhimit</button>
+                <?php else: ?>
+                    <button class="menu-btn" onclick="window.location.href='pages/student-details.php'">Panou i Studentit</button>
+                <?php endif; ?>
+                <button class="menu-btn" onclick="window.location.href='public/logout.php'">Dalje</button>
+                <span style="color: white; margin-left: 10px;">Mirë se vini, <?php echo htmlspecialchars($user['username']); ?></span>
+            <?php else: ?>
+                <button class="menu-btn" onclick="window.location.href='public/login.php'">Hyrje</button>
+            <?php endif; ?>
         </div>
     </nav>
     
     <div class="about-hero">
         <div class="hero-content">
             <h1>UBT University SMIS</h1>
-            <p class="hero-subtitle">Modern Student Management Information System - Manage everything in one place</p>
+            <p class="hero-subtitle">Sistemi Modern i Menaxhimit të Studentëve - Menaxho të gjithçka në një vend</p>
         </div>
     </div>
 

@@ -15,7 +15,7 @@ async function loadAnnouncements() {
             announcementDiv.innerHTML = `
                 <div class="announcement-title">${announcement.title}</div>
                 <div class="announcement-content">${announcement.content}</div>
-                <div class="announcement-date">Posted on: ${announcement.date}</div>
+                <div class="announcement-date">Postuar në: ${announcement.date}</div>
             `;
 
             announcementsList.appendChild(announcementDiv);

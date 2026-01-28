@@ -4,6 +4,8 @@ error_reporting(E_ALL);
 session_start();
 require_once '../config/config.php';
 require_once '../config/db.php';
+require_once '../src/Auth.php';
+require_once '../src/User.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email'] ?? '');
@@ -14,20 +16,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare("SELECT * FROM user WHERE email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch();
-            if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user'] = [
-                    'id' => $user['id'],
-                    'username' => $user['username'],
-                    'email' => $user['email'],
-                    'role' => $user['role']
-                ];
+        if ($user && password_verify($password, $user['password'])) {
+                $auth = new Auth(new User($pdo), $pdo);
+                $auth->login($user, isset($_POST['remember']));
                 echo "Login successful! Welcome, " . htmlspecialchars($user['username']) . ".";
-
-
-
-                if (isset($_POST['remember'])) {
-                    setcookie('user_id', $user['id'], time() + (30 * 24 * 60 * 60), '/'); // 30 days
-                }
                 if ($user['role'] === 'admin') {
                     header('Location: ../admin/dashboard.php');
                 } else {
@@ -48,14 +40,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
-    <title>SMIS</title>
+    <title>SMIS - Hyrje</title>
 </head>
 <body>
     <nav class="navbar">
@@ -69,11 +61,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <p class="error"><?php echo htmlspecialchars($error); ?></p>
                 <?php endif; ?>
                 <input type="email" name="email" id="email" placeholder="Email" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <label for="remember"><input type="checkbox" name="remember" id="remember"> Remember me</label>
+                <input type="password" name="password" id="password" placeholder="Fjalëkalim" required>
+                <label for="remember"><input type="checkbox" name="remember" id="remember"> Më mbaj mend</label>
                 <button type="submit" id="login-btn">Hyrje</button>
             </form>
-            <p>Nuk ke llogari? <a href="register.php">Regjistrohu këtu</a></p>
+            <p>Nuk keni llogari? <a href="register.php">Regjistrohu këtu</a></p>
         </div>
     </div>
     <footer class="footer-navbar"></footer>

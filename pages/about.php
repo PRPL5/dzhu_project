@@ -6,35 +6,61 @@ require_once '../src/Auth.php';
 require_once '../src/User.php';
 
 $auth = new Auth(userClass: new User(database: $pdo));
-$auth->requireLogin();
 $user = $auth->getCurrentUser();
-$stmt = $pdo->query("SELECT id, name, description FROM departments ORDER BY name ASC");
-$departments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+ // Static departments data since departments table is not available
+ $departments = [
+     [
+         'id' => 1,
+         'name' => 'Fakulteti i Inxhinierisë',
+         'description' => 'Oferton programe në Shkencën Kompjuterike, Inxhinieri Elektrike, Inxhinieri Mjekanike dhe Inxhinieri Qytetare'
+     ],
+     [
+         'id' => 2,
+         'name' => 'Fakulteti i Ekonomisë',
+         'description' => 'Specijalizohet në Menaxhimin e Biznesit, Ekonomi, Financa dhe Marketing'
+     ],
+     [
+         'id' => 3,
+         'name' => 'Fakulteti i Arteve dhe Shkencave',
+         'description' => 'Koveron fushat si Matematika, Fizika, Kimia dhe Shkenca Sociale'
+     ],
+     [
+         'id' => 4,
+         'name' => 'Fakulteti i Teknologjisë së Informacionit',
+         'description' => 'Fokuson në Inxhinieri Softuerike, Sisteme Informacioni dhe Siguri Kibernetike'
+     ],
+     [
+         'id' => 5,
+         'name' => 'Fakulteti i Drejtës',
+         'description' => 'Jep arsim dhe trajnim juridik për avokatët e ardhshëm dhe profesionistët juridikë'
+     ]
+ ];
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/styles.css">
-    <title>SMIS - About Us</title>
+    <title>SMIS - Rreth Nesh</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
+        <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='../index.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='../index.php'">Home</button>
-            <button class="menu-btn" onclick="window.location.href='about.php'">About Us</button>
-            <button class="menu-btn" onclick="window.location.href='studenti.php'">Top Students</button>
-            <button class="menu-btn" onclick="window.location.href='contact.php'">Contact</button>
+            <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
+            <button class="menu-btn" onclick="window.location.href='about.php'">Rreth Nesh</button>
+            <button class="menu-btn" onclick="window.location.href='studenti.php'">Studentët më të Mirë</button>
+            <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
             <?php if (!$user): ?>
-                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Login</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Hyrje</button>
             <?php else: ?>
-                <span style="margin-left:10px;">Hello, <?= htmlspecialchars($user['name']); ?></span>
-                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
+                <span style="margin-left:10px;">Përshëndetje, <?= htmlspecialchars($user['username']); ?></span>
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
             <?php endif; ?>
         </div>
     </nav>

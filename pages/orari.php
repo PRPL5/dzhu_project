@@ -10,7 +10,7 @@ $auth->requireLogin();
 $user = $auth->getCurrentUser();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,13 +25,13 @@ $user = $auth->getCurrentUser();
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
-            <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
-            <button class="menu-btn" onclick="window.location.href='grades.php'">Grades</button>
-            <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
-            <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
-            <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
-            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
+            <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
+            <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
+            <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
+            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
         </div>
     </nav>
     

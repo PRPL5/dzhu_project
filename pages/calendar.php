@@ -9,13 +9,13 @@ $auth->requireLogin();
 $user = $auth->getCurrentUser();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/studenti.css">
     <link rel="stylesheet" href="../css/calendar.css">
-    <title>Academic Calendar - SMIS</title>
+    <title>Kalendari Akademik - SMIS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -24,17 +24,17 @@ $user = $auth->getCurrentUser();
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='studenti.php'">Dashboard</button>
-            <button class="menu-btn" onclick="window.location.href='orari.php'">Schedule</button>
-            <button class="menu-btn" onclick="window.location.href='grades.php'">Grades</button>
-            <button class="menu-btn" onclick="window.location.href='provimet.php'">Exams</button>
-            <button class="menu-btn" onclick="window.location.href='payments.php'">Payments</button>
-            <button class="menu-btn" onclick="window.location.href='calendar.php'">Calendar</button>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
+            <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
+            <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
+            <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
+            <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
             <?php if ($user): ?>
-   
-                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Logout</button>
+    
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
             <?php else: ?>
-                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Login</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Hyrje</button>
             <?php endif; ?>
         </div>
     </nav>

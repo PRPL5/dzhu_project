@@ -86,12 +86,12 @@
   "departments": [
     {
       "department_id": "DEPT_ENGINEERING",
-      "name": "Faculty of Engineering",
+      "name": "Fakulteti i Inxhinierisë",
       "head_of_department": "Prof. Ilir Musliu"
     },
     {
       "department_id": "DEPT_ECONOMICS",
-      "name": "Faculty of Economics",
+      "name": "Fakulteti i Ekonomisë",
       "head_of_department": "Prof. Mira Gashi"
     }
   ],
@@ -99,24 +99,24 @@
   "programs": [
     {
       "program_id": "PROG_CS_BSC",
-      "name": "BSc Computer Science",
+      "name": "BSc Shkenca Kompjuterike",
       "duration_years": 3,
       "department_id": "DEPT_ENGINEERING"
     },
     {
       "program_id": "PROG_BA_BUSINESS",
-      "name": "BA Business Administration",
+      "name": "BA Menaxhim i Biznesit",
       "duration_years": 3,
       "department_id": "DEPT_ECONOMICS"
     }
   ],
 
   "courses": [
-    { "course_id": "CS101", "name": "Intro to Programming", "credits": 6 },
-    { "course_id": "MATH102", "name": "Calculus I", "credits": 5 },
-    { "course_id": "BUS101", "name": "Principles of Management", "credits": 6 },
-    { "course_id": "ENG101", "name": "Academic English", "credits": 3 },
-    { "course_id": "CS210", "name": "Software Engineering", "credits": 6 }
+    { "course_id": "CS101", "name": "Hyrje në Programim", "credits": 6 },
+    { "course_id": "MATH102", "name": "Kalkulus I", "credits": 5 },
+    { "course_id": "BUS101", "name": "Parime të Menaxhimit", "credits": 6 },
+    { "course_id": "ENG101", "name": "Anglisht Akademik", "credits": 3 },
+    { "course_id": "CS210", "name": "Inxhinieri Softuerike", "credits": 6 }
   ],
 
   "class_schedule": [
@@ -124,7 +124,7 @@
       "schedule_id": "SCH001",
       "course_id": "CS101",
       "teacher_id": "TCH1001",
-      "day": "Monday",
+      "day": "E Hënë",
       "time": "09:00-11:00",
       "room": "A-104"
     },
@@ -132,7 +132,7 @@
       "schedule_id": "SCH002",
       "course_id": "BUS101",
       "teacher_id": "TCH1002",
-      "day": "Tuesday",
+      "day": "E Martë",
       "time": "10:00-12:00",
       "room": "B-201"
     }
@@ -196,8 +196,8 @@
   "announcements": [
     {
       "announcement_id": "ANN001",
-      "title": "Winter Semester Exam Schedule Released",
-      "content": "The full exam schedule for winter 2025 is now available on the student portal.",
+      "title": "Orari i Provimeve të Semestrit të Dimrit të Publikuar",
+      "content": "Orari i plotë i provimeve për dimrin 2025 tani është disponueshëm në portalin e studentëve.",
       "date": "2024-12-01",
       "posted_by": "USR01"
     }
@@ -209,16 +209,16 @@
       "student_id": "STU2025001",
       "date": "2024-10-10",
       "amount": 500,
-      "method": "Bank Transfer",
-      "status": "Completed"
+      "method": "Transferim Bankar",
+      "status": "Përfunduar"
     },
     {
       "payment_id": "PAY1002",
       "student_id": "STU2025002",
       "date": "2024-10-12",
       "amount": 350,
-      "method": "Card",
-      "status": "Pending"
+      "method": "Kartë",
+      "status": "Në pritje"
     }
   ]
 }

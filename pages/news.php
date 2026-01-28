@@ -27,10 +27,10 @@ $latest = $newsModel->getLatestNews(6);
     <nav class="menu">
         <img src="../img/ubt1.png" id="nav-logo" alt="UBT" onclick="window.location.href='../index.php'" style="cursor:pointer">
         <div>
-            <button class="menu-btn" onclick="window.location.href='../index.php'">Home</button>
+            <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
             <button class="menu-btn active" onclick="window.location.href='news.php'">Lajmet</button>
-            <button class="menu-btn" onclick="window.location.href='contact.php'">Contact</button>
-            <button class="menu-btn" onclick="window.location.href='../public/login.php'">Login</button>
+            <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
+            <button class="menu-btn" onclick="window.location.href='../public/login.php'">Hyrje</button>
         </div>
     </nav>
 

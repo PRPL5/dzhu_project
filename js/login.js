@@ -5,25 +5,25 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     const password = document.getElementById('password').value;
 
     if (!email || !password) {
-        alert('Email and password are required.');
+        alert('Email dhe fjalëkalim janë të detyrueshme.');
         return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
+        alert('Ju lutemi shkruani një adresë email të vlefshme.');
         return;
     }
 
     if (password.length < 6) {
-        alert('Password must be at least 6 characters long.');
+        alert('Fjalëkalimi duhet të jetë të paktën 6 shkronja gjatë.');
         return;
     }
 
     if (email === 'admin@smis.com' && password === 'admin123') {
-        alert('Login successful! Welcome Admin.');
+        alert('Hyrja e suksesshme! Mirë se vini Admin.');
         window.location.href = 'pages/main.php';
     } else {
-        alert('Invalid credentials. (Demo: try admin@smis.com / admin123)');
+        alert('Kredenciale të pavlefshme. (Demonstrim: provoni admin@smis.com / admin123)');
     }
 });

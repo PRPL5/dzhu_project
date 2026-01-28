@@ -7,31 +7,31 @@ document.getElementById('contact-form').addEventListener('submit', function(even
     const message = document.getElementById('message').value.trim();
 
     if (!name || !email || !subject || !message) {
-        alert('All fields are required.');
+        alert('Të gjitha fushat janë të detyrueshme.');
         return;
     }
 
     if (name.length < 2) {
-        alert('Name must be at least 2 characters long.');
+        alert('Emri duhet të jetë të paktën 2 shkronja gjatë.');
         return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
+        alert('Ju lutemi shkruani një adresë email të vlefshme.');
         return;
     }
 
     if (subject.length < 5) {
-        alert('Subject must be at least 5 characters long.');
+        alert('Tema duhet të jetë të paktën 5 shkronja gjatë.');
         return;
     }
 
     if (message.length < 10) {
-        alert('Message must be at least 10 characters long.');
+        alert('Mesazhi duhet të jetë të paktën 10 shkronja gjatë.');
         return;
     }
 
-    alert('Message sent successfully! (This is a demo - message not actually sent)');
+    alert('Mesazhi dërguar me sukses! (Kjo është një demonstrim - mesazhi nuk dërgohet në të vërtetë)');
     document.getElementById('contact-form').reset();
 });

@@ -60,4 +60,11 @@ CREATE TABLE departments (
     description LONGTEXT
 );
 
+INSERT INTO departments (name, description) VALUES
+('Faculty of Engineering', 'Offering programs in Computer Science, Electrical Engineering, Mechanical Engineering, and Civil Engineering'),
+('Faculty of Economics', 'Specializing in Business Administration, Economics, Finance, and Marketing'),
+('Faculty of Arts and Sciences', 'Covering fields such as Mathematics, Physics, Chemistry, and Social Sciences'),
+('Faculty of Information Technology', 'Focusing on Software Engineering, Information Systems, and Cybersecurity'),
+('Faculty of Law', 'Providing legal education and training for future lawyers and legal professionals');
+
 

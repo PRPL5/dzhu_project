@@ -18,7 +18,7 @@ async function loadStudents() {
             studentDiv.innerHTML = `
                 <div class="student-name">${student.first_name} ${student.last_name}</div>
                 <div class="student-id">ID: ${student.student_id}</div>
-                <div class="student-program">${program ? program.name : 'Unknown Program'}</div>
+                <div class="student-program">${program ? program.name : 'Program i Panjohur'}</div>
             `;
 
             studentsList.appendChild(studentDiv);

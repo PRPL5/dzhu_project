@@ -37,14 +37,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
-    <title>SMIS - Register</title>
+    <title>SMIS - Regjistrim</title>
 </head>
 <body>
     <nav class="navbar">
@@ -57,13 +57,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <?php if (isset($error)): ?>
                     <p class="error"><?php echo htmlspecialchars($error); ?></p>
                 <?php endif; ?>
-                <input type="text" name="username" id="username" placeholder="Username" required>
+                <input type="text" name="username" id="username" placeholder="Emri i përdoruesit" required>
                 <input type="email" name="email" id="email" placeholder="Email" required>
-                <input type="password" name="password" id="password" placeholder="Password" required>
-                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
-                <button type="submit" id="register-btn">Register</button>
+                <input type="password" name="password" id="password" placeholder="Fjalëkalim" required>
+                <input type="password" name="confirm_password" id="confirm_password" placeholder="Konfirmo Fjalëkalimin" required>
+                <button type="submit" id="register-btn">Regjistrohu</button>
             </form>
-            <p>Already have an account? <a href="login.php">Login here</a></p>
+            <p>Jepni tashmë llogari? <a href="login.php">Hyrje këtu</a></p>
         </div>
     </div>
     <footer class="footer-navbar"></footer>

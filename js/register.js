@@ -8,25 +8,25 @@ document.getElementById('register-form').addEventListener('submit', function(eve
     const confirmPassword = document.getElementById('confirm_password').value;
 
     if (!firstName || !lastName || !email || !password || !confirmPassword) {
-        alert('All fields are required.');
+        alert('Të gjitha fushat janë të detyrueshme.');
         return;
     }
 
     if (password !== confirmPassword) {
-        alert('Passwords do not match.');
+        alert('Fjalëkalimet nuk përputhen.');
         return;
     }
 
     if (password.length < 6) {
-        alert('Password must be at least 6 characters long.');
+        alert('Fjalëkalimi duhet të jetë të paktën 6 shkronja gjatë.');
         return;
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address.');
+        alert('Ju lutemi shkruani një adresë email të vlefshme.');
         return;
     }
 
-    alert('Registration successful! (This is a demo - data not actually saved)');
+    alert('Regjistrimi i suksesshëm! (Kjo është një demonstrim - të dhënat nuk ruhen në të vërtetë)');
 });

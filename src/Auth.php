@@ -2,27 +2,54 @@
 
 class Auth {
     private $userClass;
+    private $pdo;
 
-    public function __construct($userClass) {
+    public function __construct($userClass, $pdo = null) {
         $this->userClass = $userClass;
+        $this->pdo = $pdo;
     }
 
     public function isLoggedIn() {
-        return isset($_SESSION['user']) && !empty($_SESSION['user']);
+        if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
+            return true;
+        }
+        if (isset($_COOKIE['user_id']) && $this->pdo) {
+            try {
+                $stmt = $this->pdo->prepare("SELECT * FROM user WHERE id = ?");
+                $stmt->execute([$_COOKIE['user_id']]);
+                $user = $stmt->fetch();
+                if ($user) {
+                    $_SESSION['user'] = [
+                        'id' => $user['id'],
+                        'username' => $user['username'],
+                        'email' => $user['email'],
+                        'role' => $user['role']
+                    ];
+                    return true;
+                }
+            } catch (Exception $e) {
+            }
+        }
+        return false;
     }
 
-    public function login($user_data) {
+    public function login($user_data, $remember = false) {
         $_SESSION['user'] = [
             'id' => $user_data['id'],
             'username' => $user_data['username'],
             'email' => $user_data['email'],
             'role' => $user_data['role']
         ];
+        
+        if ($remember) {
+            setcookie('user_id', $user_data['id'], time() + (30 * 24 * 60 * 60), '/'); // 30 days
+        }
     }
 
     public function logout() {
         session_destroy();
         unset($_SESSION['user']);
+        setcookie('user_id', '', time() - 3600, '/'); // Delete remember me cookie
     }
 
     public function getCurrentUser() {

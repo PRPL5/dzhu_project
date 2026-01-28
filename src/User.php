@@ -100,5 +100,10 @@ class User {
         );
         return $result !== false;
     }
+
+    public function isAdmin($userId) {
+        $user = $this->getUserById($userId);
+        return $user && $user['role'] === 'admin';
+    }
 }
 ?>

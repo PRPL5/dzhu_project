@@ -83,7 +83,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Dashboard</button>
             <button class="menu-btn <?php echo $current=='manage-news.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-news.php'">Menaxho Lajmet</button>
             <button class="menu-btn" onclick="window.location.href='manage-users.php'">Menaxho Përdoruesit</button>
-            <button class="menu-btn" onclick="window.location.href='manage-messages.php'">Mesazhet</button>
+            <button class="menu-btn <?php echo $current=='manage-messages.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-messages.php'">Menaxho Mesazhet</button>
+            <button class="menu-btn <?php echo $current=='notifications.php' ? 'active' : ''; ?>" onclick="window.location.href='notifications.php'">Notifikimet</button>
             <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
         </div>
     </nav>
@@ -99,25 +100,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <input type="hidden" name="id" value="<?php echo htmlspecialchars($news['id']); ?>">
                 <?php endif; ?>
                 <div class="form-group">
-                    <label>Title</label>
+                    <label>Titulli</label>
                     <input type="text" name="title" required value="<?php echo $news ? htmlspecialchars($news['title']) : ''; ?>" style="width:100%; padding:8px">
                 </div>
                 <div class="form-group">
-                    <label>Content</label>
+                    <label>Përmbajtja</label>
                     <textarea name="content" rows="6" required style="width:100%; padding:8px"><?php echo $news ? htmlspecialchars($news['content']) : ''; ?></textarea>
                 </div>
                 <div class="form-group">
-                    <label>Image (optional)</label>
+                    <label>Foto (opsionale)</label>
                     <input type="file" name="image" accept="image/*">
                 </div>
-                <button class="menu-btn" type="submit"><?php echo $news ? 'Update' : 'Create'; ?></button>
-                <?php if ($news): ?><a href="manage-news.php" class="menu-btn">Cancel</a><?php endif; ?>
+                <button class="submit-btn" type="submit"><?php echo $news ? 'Përditëso' : 'Krijo'; ?></button>
+                <?php if ($news): ?><a href="manage-news.php" class="menu-btn">Anulo</a><?php endif; ?>
             </form>
         </div>
 
         <table class="news-table">
             <thead>
-                <tr><th>ID</th><th>Title</th><th>By</th><th>Created</th><th>Actions</th></tr>
+                <tr><th>ID</th><th>Titulli</th><th> Nga</th><th>Krijuar</th><th>Veprime</th></tr>
             </thead>
             <tbody>
                 <?php foreach ($newsList as $n): ?>
@@ -127,11 +128,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <td><?php echo htmlspecialchars($n['created_by_name'] ?? ''); ?></td>
                     <td><?php echo htmlspecialchars($n['created_at']); ?></td>
                     <td>
-                        <a class="menu-btn" href="manage-news.php?action=edit&id=<?php echo $n['id']; ?>">Edit</a>
+                            <a class="menu-btn" style="color:black; background-color: lime;" href="manage-news.php?action=edit&id=<?php echo $n['id']; ?>">Ndrysho</a>
                         <form method="post" style="display:inline">
                             <input type="hidden" name="action" value="delete">
                             <input type="hidden" name="id" value="<?php echo $n['id']; ?>">
-                            <button class="menu-btn" onclick="return confirm('Delete this news?')">Delete</button>
+                            <button class="menu-btn" style="color:black; background-color: red;" onclick="return confirm('Fshini këtë lajm?')">Fshi</button>
                         </form>
                     </td>
                 </tr>
