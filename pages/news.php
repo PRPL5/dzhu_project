@@ -113,6 +113,129 @@ $latest = $newsModel->getLatestNews(10);
         .slider-prev { left: 10px; }
         .slider-next { right: 10px; }
     }
+    
+    .news-hero {
+        background: linear-gradient(135deg, #005ECA 0%, #003d82 100%);
+        color: white;
+        padding: 60px 20px;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .news-hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .news-hero p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .section-title {
+        text-align: center;
+        margin: 50px 0 30px;
+        color: #333;
+    }
+    
+    .section-title h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    .section-title p {
+        color: #666;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .info-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+    
+    .info-card {
+        background: white;
+        border-radius: 12px;
+        padding: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+    
+    .info-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .info-card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+    
+    .info-card h3 {
+        color: #005ECA;
+        margin-bottom: 10px;
+    }
+    
+    .info-card p {
+        color: #666;
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    
+    .newsletter-section {
+        background: #f8f9fa;
+        padding: 50px 20px;
+        text-align: center;
+        margin-top: 50px;
+    }
+    
+    .newsletter-section h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+    
+    .newsletter-section p {
+        color: #666;
+        margin-bottom: 25px;
+    }
+    
+    .newsletter-form {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .newsletter-form input {
+        padding: 12px 20px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        width: 300px;
+        max-width: 100%;
+    }
+    
+    .newsletter-form button {
+        padding: 12px 30px;
+        background: #005ECA;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    
+    .newsletter-form button:hover {
+        background: #004aa3;
+    }
     </style>
 </head>
 <body>
@@ -126,9 +249,12 @@ $latest = $newsModel->getLatestNews(10);
         </div>
     </nav>
 
+    <div class="news-hero">
+        <h1>Lajmet e UBT-së</h1>
+        <p>Qëndroni të informuar me lajmet më të fundit nga universiteti ynë. Zbuloni ngjarjet, arritjet dhe mundësitë e reja.</p>
+    </div>
+
     <main class="container">
-        <h1>Lajmet</h1>
-        
         <div class="news-slider-container">
             <?php if (empty($latest)): ?>
                 <div class="no-news">
@@ -159,6 +285,35 @@ $latest = $newsModel->getLatestNews(10);
                 </div>
             <?php endif; ?>
         </div>
+        
+        <div class="section-title">
+            <h2>Çfarë Ofrojmë</h2>
+            <p>UBT është lideri në arsimin e lartë në Kosovë</p>
+        </div>
+        
+        <div class="info-cards">
+            <div class="info-card">
+                <h3>Programe Cilësore</h3>
+                <p>Mbi 40 programe studimi të akredituara në nivele Bachelor, Master dhe Doktoraturë.</p>
+            </div>
+            <div class="info-card">
+                <h3>Partneritete Ndërkombëtare</h3>
+                <p>Bashkëpunim me mbi 200 universitete nga e gjithë bota përmes programeve Erasmus+.</p>
+            </div>
+            <div class="info-card">
+                <h3>Mundësi Karriere</h3>
+                <p>95% e të diplomuarve tanë punësohen brenda 6 muajve pas diplomimit.</p>
+            </div>
+        </div>
+        
+        <div class="newsletter-section">
+            <h2>Abonohu në Newsletter</h2>
+            <p>Merr lajmet e fundit direkt në email-in tënd</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Faleminderit për abonimin!');">
+                <input type="email" placeholder="Email-i juaj..." required>
+                <button type="submit">Abonohu</button>
+            </form>
+        </div>
     </main>
 
     <footer class="footer"></footer>
@@ -172,6 +327,8 @@ $latest = $newsModel->getLatestNews(10);
         
         var cards = track.querySelectorAll('.news-card');
         var index = 0;
+        var autoSlideInterval;
+        var autoSlideDelay = 4000; // 4 sekonda
         
         function getPerView() {
             if (window.innerWidth <= 768) return 1;
@@ -191,13 +348,39 @@ $latest = $newsModel->getLatestNews(10);
             nextBtn.disabled = index >= getMax();
         }
         
+        function nextSlide() {
+            if (index < getMax()) {
+                index++;
+            } else {
+                index = 0; // Kthehu ne fillim
+            }
+            update();
+        }
+        
+        function startAutoSlide() {
+            stopAutoSlide();
+            autoSlideInterval = setInterval(nextSlide, autoSlideDelay);
+        }
+        
+        function stopAutoSlide() {
+            if (autoSlideInterval) {
+                clearInterval(autoSlideInterval);
+            }
+        }
+        
         prevBtn.onclick = function() {
             if (index > 0) { index--; update(); }
+            startAutoSlide(); // Rifillo auto-slide pas klikimit
         };
         
         nextBtn.onclick = function() {
             if (index < getMax()) { index++; update(); }
+            startAutoSlide(); // Rifillo auto-slide pas klikimit
         };
+        
+        // Ndalo auto-slide kur mouse eshte mbi slider
+        track.parentElement.onmouseenter = stopAutoSlide;
+        track.parentElement.onmouseleave = startAutoSlide;
         
         window.onresize = function() {
             index = Math.min(index, getMax());
@@ -205,6 +388,7 @@ $latest = $newsModel->getLatestNews(10);
         };
         
         update();
+        startAutoSlide(); // Fillo auto-slide
     })();
     </script>
 </body>

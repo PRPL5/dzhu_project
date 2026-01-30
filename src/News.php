@@ -41,11 +41,11 @@ class News {
     }
 
     public function getLatestNews($limit = 4) {
+        $limit = (int) $limit;
         return $this->db->fetchAll(
             "SELECT n.*, u.username as created_by_name FROM news n 
              LEFT JOIN user u ON n.created_by = u.id 
-             ORDER BY n.created_at DESC LIMIT ?",
-            [$limit]
+             ORDER BY n.created_at DESC LIMIT $limit"
         );
     }
 
