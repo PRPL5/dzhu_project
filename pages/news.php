@@ -328,7 +328,7 @@ $latest = $newsModel->getLatestNews(10);
         var cards = track.querySelectorAll('.news-card');
         var index = 0;
         var autoSlideInterval;
-        var autoSlideDelay = 4000; // 4 sekonda
+        var autoSlideDelay = 2000; // 4 sekonda
         
         function getPerView() {
             if (window.innerWidth <= 768) return 1;
@@ -352,7 +352,7 @@ $latest = $newsModel->getLatestNews(10);
             if (index < getMax()) {
                 index++;
             } else {
-                index = 0; // Kthehu ne fillim
+                index = 0; 
             }
             update();
         }
@@ -370,15 +370,15 @@ $latest = $newsModel->getLatestNews(10);
         
         prevBtn.onclick = function() {
             if (index > 0) { index--; update(); }
-            startAutoSlide(); // Rifillo auto-slide pas klikimit
+            startAutoSlide(); 
         };
         
         nextBtn.onclick = function() {
             if (index < getMax()) { index++; update(); }
-            startAutoSlide(); // Rifillo auto-slide pas klikimit
+            startAutoSlide();
         };
         
-        // Ndalo auto-slide kur mouse eshte mbi slider
+     
         track.parentElement.onmouseenter = stopAutoSlide;
         track.parentElement.onmouseleave = startAutoSlide;
         
@@ -388,7 +388,7 @@ $latest = $newsModel->getLatestNews(10);
         };
         
         update();
-        startAutoSlide(); // Fillo auto-slide
+        startAutoSlide();
     })();
     </script>
 </body>

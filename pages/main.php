@@ -33,7 +33,8 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
             <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
             <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
-            <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
+             <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
+             <button class="menu-btn" onclick="window.location.href='news.php'">Lajme</button>
         <?php endif; ?>
         <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
     </div>
