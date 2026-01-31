@@ -32,14 +32,14 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='pages/contact.php'">Kontakt</button>
             <?php if ($isLoggedIn) : ?>
                 <?php if ($auth->isAdmin()) : ?>
-                    <button class="menu-btn" onclick="window.location.href='admin/dashboard.php'">Panou i Menaxhimit</button>
+                    <button class="menu-btn" onclick="window.location.href='admin/dashboard.php'">Paneli i Menaxhimit</button>
                 <?php else: ?>
-                    <button class="menu-btn" onclick="window.location.href='pages/student-details.php'">Panou i Studentit</button>
+                    <button class="menu-btn" onclick="window.location.href='pages/student-details.php'">Paneli i Studentit</button>
                 <?php endif; ?>
-                <button class="menu-btn" onclick="window.location.href='public/logout.php'">Dalje</button>
+                <button class="menu-btn" onclick="window.location.href='public/logout.php'">Log Out</button>
                 <span style="color: white; margin-left: 10px;">Mirë se vini, <?php echo htmlspecialchars($user['username']); ?></span>
             <?php else: ?>
-                <button class="menu-btn" onclick="window.location.href='public/login.php'">Hyrje</button>
+                <button class="menu-btn" onclick="window.location.href='public/login.php'">Log In</button>
             <?php endif; ?>
         </div>
     </nav>

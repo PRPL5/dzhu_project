@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/login.css">
-    <title>SMIS - Hyrje</title>
+    <title>SMIS - Log In</title>
 </head>
 <body>
     <nav class="navbar">
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="email" name="email" id="email" placeholder="Email" required>
                 <input type="password" name="password" id="password" placeholder="Fjalëkalim" required>
                 <label for="remember"><input type="checkbox" name="remember" id="remember"> Më mbaj mend</label>
-                <button type="submit" id="login-btn">Hyrje</button>
+                <button type="submit" id="login-btn">Log In</button>
             </form>
             <p>Nuk keni llogari? <a href="register.php">Regjistrohu këtu</a></p>
         </div>

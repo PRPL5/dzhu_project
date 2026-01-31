@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="confirm_password" id="confirm_password" placeholder="Konfirmo Fjalëkalimin" required>
                 <button type="submit" id="register-btn">Regjistrohu</button>
             </form>
-            <p>Jepni tashmë llogari? <a href="login.php">Hyrje këtu</a></p>
+            <p>Jepni tashmë llogari? <a href="login.php">Log In këtu</a></p>
         </div>
     </div>
     <footer class="footer-navbar"></footer>

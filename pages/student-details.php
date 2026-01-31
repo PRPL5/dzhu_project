@@ -40,7 +40,7 @@ if ($user && !empty($user['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/studenti.css">
-    <title>SMIS - Panou i Studentit</title>
+    <title>SMIS - Paneli i Studentit</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
@@ -49,17 +49,17 @@ if ($user && !empty($user['id'])) {
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
             <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
             <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
             <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
-            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
+            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
         </div>
     </nav>
 
-    <h1>Panou i Studentit</h1>
+    <h1>Paneli i Studentit</h1>
     <div class="student-container">
         <div class="student-info-card" id="student-info">
             <h2>Profili</h2>

@@ -24,7 +24,7 @@ $user = $auth->getCurrentUser();
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
             <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
@@ -32,9 +32,9 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
             <?php if ($user): ?>
     
-                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
             <?php else: ?>
-                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Hyrje</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Log In</button>
             <?php endif; ?>
         </div>
     </nav>

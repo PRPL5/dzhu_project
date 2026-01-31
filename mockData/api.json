@@ -112,7 +112,7 @@
   ],
 
   "courses": [
-    { "course_id": "CS101", "name": "Hyrje në Programim", "credits": 6 },
+    { "course_id": "CS101", "name": "Log In në Programim", "credits": 6 },
     { "course_id": "MATH102", "name": "Kalkulus I", "credits": 5 },
     { "course_id": "BUS101", "name": "Parime të Menaxhimit", "credits": 6 },
     { "course_id": "ENG101", "name": "Anglisht Akademik", "credits": 3 },

@@ -245,7 +245,7 @@ $latest = $newsModel->getLatestNews(10);
             <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
             <button class="menu-btn active" onclick="window.location.href='news.php'">Lajmet</button>
             <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
-            <button class="menu-btn" onclick="window.location.href='../public/login.php'">Hyrje</button>
+            <button class="menu-btn" onclick="window.location.href='../public/login.php'">Log In</button>
         </div>
     </nav>
 

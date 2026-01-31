@@ -26,16 +26,16 @@ $user = $auth->getCurrentUser();
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
         <?php if ($auth->isAdmin()): ?>
-            <button class="menu-btn" onclick="window.location.href='../admin/dashboard.php'">Panou i Menaxhimit</button>
+            <button class="menu-btn" onclick="window.location.href='../admin/dashboard.php'">Paneli i Menaxhimit</button>
         <?php else: ?>
-            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
             <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
             <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
             <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
         <?php endif; ?>
-        <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
+        <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
     </div>
     </nav>
     <div class="container">

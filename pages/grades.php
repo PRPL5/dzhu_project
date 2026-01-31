@@ -25,13 +25,13 @@ $user = $auth->getCurrentUser();
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
         <div>
-            <button class="menu-btn" onclick="window.location.href='student-details.php'">Panou i Studentit</button>
+            <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
             <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
             <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
             <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
-            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
+            <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
         </div>
     </nav>
 
@@ -229,7 +229,7 @@ $user = $auth->getCurrentUser();
             <div class="action-buttons">
             <button class="action-btn primary" onclick="window.print()">Print Transkript</button>
             <button class="action-btn" onclick="alert('Veçoria e shkarkimit do të vijë së shpejti!')">Shkarko PDF</button>
-            <button class="action-btn" onclick="window.location.href='student-details.php'">Kthehu në Panou</button>
+            <button class="action-btn" onclick="window.location.href='student-details.php'">Kthehu në Paneli</button>
         </div>
     </div>
 

@@ -28,10 +28,10 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='studenti.php'">Studentët më të Mirë</button>
             <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
             <?php if (!$user): ?>
-                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Hyrje</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Log In</button>
             <?php else: ?>
                 <span style="margin-left:10px;">Përshëndetje, <?= htmlspecialchars($user['username']); ?></span>
-                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Dalje</button>
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
             <?php endif; ?>
         </div>
     </nav>
