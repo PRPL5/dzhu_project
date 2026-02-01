@@ -14,7 +14,7 @@ $user = $auth->getCurrentUser();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/payments.css">
+    <link rel="stylesheet" href="../css/payments.css?v=3">
     <title>Pagesat - SMIS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,7 +23,12 @@ $user = $auth->getCurrentUser();
 <body>
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-items">
             <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
@@ -166,6 +171,6 @@ $user = $auth->getCurrentUser();
     </div>
 
     <footer class="footer"></footer>
-    <script src="../js/main.js"></script>
+    <script src="../js/main.js?v=3"></script>
 </body>
 </html>

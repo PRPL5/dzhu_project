@@ -244,13 +244,128 @@ $user = $auth->getCurrentUser();
     .newsletter-form button:hover {
         background: #004aa3;
     }
+
+    .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+        padding: 10px;
+        z-index: 1001;
+    }
+
+    .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: #fff;
+        border-radius: 3px;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    .menu {
+        position: relative;
+    }
+
+    .menu-items {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    @media (max-width: 768px) {
+        .hamburger {
+            display: flex;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .menu {
+            min-height: 80px;
+            padding: 20px;
+        }
+
+        .menu-items {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding-top: 100px;
+            background-color: rgb(20, 106, 212);
+            transition: left 0.3s ease;
+            z-index: 1000;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-items.active {
+            left: 0;
+        }
+
+        #nav-logo {
+            position: relative;
+            margin: 0;
+            left: auto;
+            width: 80px;
+        }
+
+        .menu-btn {
+            width: 100%;
+            text-align: left;
+            padding: 15px 30px;
+            margin: 0;
+            border-radius: 0;
+        }
+
+        .news-hero h1 {
+            font-size: 2rem;
+        }
+
+        .news-hero p {
+            font-size: 1rem;
+        }
+
+        .info-cards {
+            flex-direction: column;
+        }
+
+        .slider-btn {
+            display: none;
+        }
+
+        .news-card {
+            min-width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
     <nav class="menu">
         <?php if ($isLoggedIn): ?>
             <img src="../img/ubt1.png" id="nav-logo" alt="UBT" onclick="window.location.href='main.php'" style="cursor:pointer">
-            <div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-items">
                 <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
                 <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
                 <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
@@ -262,7 +377,12 @@ $user = $auth->getCurrentUser();
             </div>
         <?php else: ?>
             <img src="../img/ubt1.png" id="nav-logo" alt="UBT" onclick="window.location.href='../index.php'" style="cursor:pointer">
-            <div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-items">
                 <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
                 <button class="menu-btn active" onclick="window.location.href='news.php'">Lajmet</button>
                 <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
@@ -412,6 +532,26 @@ $user = $auth->getCurrentUser();
         update();
         startAutoSlide();
     })();
+
+    function toggleMenu() {
+        var hamburger = document.querySelector('.hamburger');
+        var menuItems = document.querySelector('.menu-items');
+        
+        if (hamburger && menuItems) {
+            hamburger.classList.toggle('active');
+            menuItems.classList.toggle('active');
+        }
+    }
+
+    document.addEventListener('click', function(e) {
+        var hamburger = document.querySelector('.hamburger');
+        var menuItems = document.querySelector('.menu-items');
+        
+        if (hamburger && menuItems && !hamburger.contains(e.target) && !menuItems.contains(e.target)) {
+            hamburger.classList.remove('active');
+            menuItems.classList.remove('active');
+        }
+    });
     </script>
 </body>
 </html>

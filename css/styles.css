@@ -35,6 +35,13 @@ h1 {
     background-color: rgb(20, 106, 212);
     justify-content: center;
     height: 130px;
+    position: relative;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .menu-btn{
@@ -626,20 +633,55 @@ h1 {
 }
 
 @media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
     .menu {
-        flex-direction: column;
+        flex-direction: row;
         height: auto;
-        padding: 20px 0;
+        padding: 20px;
+        min-height: 80px;
+    }
+
+    .menu-items {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 100px;
+        background-color: rgb(20, 106, 212);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-items.active {
+        left: 0;
     }
 
     #nav-logo {
         position: relative;
-        margin: 0 0 20px 0;
-        width: 100px;
+        margin: 0;
+        left: auto;
+        width: 80px;
     }
 
     .menu-btn {
-        margin: 5px 0;
+        width: 100%;
+        text-align: left;
+        padding: 15px 30px;
+        margin: 0;
+        border-radius: 0;
     }
 
     .main {
@@ -940,7 +982,215 @@ footer p {
         0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+@media (max-width: 1200px) {
+    .info-section {
+        padding: 0 30px;
+        gap: 30px;
+    }
+
+    .announcements,
+    .departments {
+        padding: 0 30px;
+    }
+
+    .main {
+        padding: 0 30px;
+    }
+
+    .students-list {
+        padding: 0 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .info-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .info-section.reverse {
+        flex-direction: column;
+    }
+
+    .info-image {
+        justify-content: center;
+    }
+
+    .info-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .departments-list {
+        gap: 20px;
+    }
+
+    .department-card {
+        width: 280px;
+    }
+
+    .student-card {
+        width: 280px;
+    }
+}
+
 @media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .menu {
+        height: auto;
+        min-height: 80px;
+        padding: 15px 20px;
+    }
+
+    .menu-items {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 100px;
+        background-color: rgb(20, 106, 212);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-items.active {
+        left: 0;
+    }
+
+    .menu-btn {
+        width: 100%;
+        text-align: left;
+        padding: 15px 30px;
+        border-radius: 0;
+    }
+
+    #nav-logo {
+        position: relative;
+        margin: 0;
+        left: auto;
+        width: 80px;
+    }
+
+    h1 {
+        font-size: 2rem;
+        padding: 0 20px;
+    }
+
+    .main {
+        padding: 0 20px;
+        gap: 20px;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        min-height: 250px;
+    }
+
+    .info-section {
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+
+    .info-text h2 {
+        font-size: 1.6rem;
+    }
+
+    .info-text p {
+        font-size: 1rem;
+    }
+
+    .announcements,
+    .departments {
+        margin-top: 40px;
+        padding: 0 20px;
+    }
+
+    .announcements h2,
+    .departments h2 {
+        font-size: 1.6rem;
+    }
+
+    .announcement-item {
+        padding: 20px;
+    }
+
+    .announcement-title {
+        font-size: 1.3rem;
+    }
+
+    .announcement-content {
+        font-size: 1rem;
+    }
+
+    .departments-list {
+        gap: 15px;
+    }
+
+    .department-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 25px;
+    }
+
+    .department-name {
+        font-size: 1.3rem;
+    }
+
+    .students-list {
+        padding: 0 20px;
+        gap: 15px;
+    }
+
+    .student-card {
+        width: 100%;
+        max-width: 350px;
+        padding: 25px;
+    }
+
     .navbar .container {
         flex-direction: column;
         padding: 10px 20px;
@@ -968,7 +1218,64 @@ footer p {
         padding: 20px 10px;
     }
 
+    footer {
+        padding: 30px 20px;
+    }
+
+    footer::before,
+    footer::after {
+        font-size: 0.85rem;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 480px) {
     h1 {
-        font-size: 2rem;
+        font-size: 1.6rem;
+    }
+
+    .menu-btn {
+        font-size: 1rem;
+        padding: 12px 20px;
+    }
+
+    .card {
+        min-height: 220px;
+        padding: 20px;
+    }
+
+    .card img {
+        width: 150px;
+        height: 100px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .info-text h2 {
+        font-size: 1.4rem;
+    }
+
+    .learn-more-btn {
+        padding: 12px 30px;
+        font-size: 0.9rem;
+    }
+
+    .department-card {
+        padding: 20px;
+    }
+
+    .department-name {
+        font-size: 1.2rem;
+    }
+
+    .student-card {
+        padding: 20px;
+    }
+
+    .submit-btn {
+        padding: 10px 24px;
+        font-size: 0.9rem;
     }
 }

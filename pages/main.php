@@ -14,7 +14,7 @@ $user = $auth->getCurrentUser();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css?v=2">
     <title>SMIS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,7 +24,12 @@ $user = $auth->getCurrentUser();
 <body>
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-items">
         <?php if ($auth->isAdmin()): ?>
             <button class="menu-btn" onclick="window.location.href='../admin/dashboard.php'">Paneli i Menaxhimit</button>
         <?php else: ?>

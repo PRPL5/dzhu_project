@@ -24,7 +24,12 @@ $user = $auth->getCurrentUser();
 <body>
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='main.php'" style="cursor: pointer;">
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-items">
             <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
             <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
             <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
@@ -187,5 +192,6 @@ $user = $auth->getCurrentUser();
     </div>
 
     <footer class="footer"></footer>
+    <script src="../js/main.js"></script>
 </body>
 </html>

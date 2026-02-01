@@ -23,7 +23,12 @@ $user = $auth->getCurrentUser();
 <body>
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='../index.php'" style="cursor: pointer;">
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-items">
             <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
             <button class="menu-btn" onclick="window.location.href='about.php'">Rreth Nesh</button>
             <button class="menu-btn" onclick="window.location.href='studenti.php'">Studentët më të Mirë</button>

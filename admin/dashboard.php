@@ -77,6 +77,13 @@ h1 {
     background-color: rgb(20, 106, 212);
     justify-content: center;
     height: 130px;
+    position: relative;
+}
+
+.menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .menu-btn{
@@ -94,6 +101,35 @@ h1 {
 .menu-btn:hover{
     background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 .dashboard-stats {
@@ -155,20 +191,53 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
     .menu {
+        min-height: 80px;
+        padding: 20px;
+    }
+
+    .menu-items {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
         flex-direction: column;
-        height: auto;
-        padding: 10px 0;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding-top: 100px;
+        background-color: rgb(20, 106, 212);
+        transition: left 0.3s ease;
+        z-index: 1000;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-items.active {
+        left: 0;
     }
 
     .menu-btn {
-        padding: 10px 15px;
+        width: 100%;
+        text-align: left;
+        padding: 15px 30px;
+        margin: 0;
+        border-radius: 0;
     }
 
     #nav-logo {
-        position: static;
-        margin: 10px 0;
-        width: 100px;
+        position: relative;
+        margin: 0;
+        left: auto;
+        width: 80px;
     }
 
     .dashboard-stats {
@@ -197,7 +266,12 @@ footer {
         <?php $current = basename($_SERVER['PHP_SELF']); ?>
         <nav class="menu">
             <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='../index.php'" style="cursor: pointer;">
-            <div>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-items">
                 <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Paneli i Menaxhimit</button>
                 <button class="menu-btn <?php echo $current=='manage-news.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-news.php'">Menaxho Lajmet</button>
                 <button class="menu-btn <?php echo $current=='manage-exams.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-exams.php'">Menaxho Provimet</button>
@@ -241,5 +315,38 @@ footer {
     <footer class="footer">
         <p>&copy; UBT. Të gjitha të drejtat e rezervuara.</p>
     </footer>
+    
+    <script>
+    function toggleMenu() {
+        var hamburger = document.querySelector('.hamburger');
+        var menuItems = document.querySelector('.menu-items');
+        
+        if (hamburger && menuItems) {
+            hamburger.classList.toggle('active');
+            menuItems.classList.toggle('active');
+        }
+    }
+    
+    document.addEventListener('click', function(e) {
+        var hamburger = document.querySelector('.hamburger');
+        var menuItems = document.querySelector('.menu-items');
+        
+        if (hamburger && menuItems && !hamburger.contains(e.target) && !menuItems.contains(e.target)) {
+            hamburger.classList.remove('active');
+            menuItems.classList.remove('active');
+        }
+    });
+    
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768) {
+            var hamburger = document.querySelector('.hamburger');
+            var menuItems = document.querySelector('.menu-items');
+            if (hamburger && menuItems) {
+                hamburger.classList.remove('active');
+                menuItems.classList.remove('active');
+            }
+        }
+    });
+    </script>
 </body>
 </html>

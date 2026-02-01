@@ -41,7 +41,7 @@ $user = $auth->getCurrentUser();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css?v=2">
     <title>SMIS - Rreth Nesh</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +50,12 @@ $user = $auth->getCurrentUser();
 <body>
     <nav class="menu">
         <img src="../img/ubt1.png" alt="UBT Logo" id="nav-logo" onclick="window.location.href='../index.php'" style="cursor: pointer;">
-        <div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-items">
             <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
             <button class="menu-btn" onclick="window.location.href='about.php'">Rreth Nesh</button>
             <button class="menu-btn" onclick="window.location.href='studenti.php'">Studentët më të Mirë</button>
