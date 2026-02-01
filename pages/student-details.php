@@ -8,17 +8,14 @@ require_once '../src/Database.php';
 require_once '../src/News.php';
 require_once '../src/Message.php';
 
-// Initialize database connection and models
 $database = new Database();
 $newsModel = new News($database);
 $messageModel = new Message($database);
 
-// Initialize authentication
 $auth = new Auth(new User($pdo), $pdo);
 $auth->requireLogin();
 $user = $auth->getCurrentUser();
 
-// Fetch user data safely
 $userNews = [];
 $userMessages = [];
 $joined = '—';
@@ -27,7 +24,6 @@ if ($user && !empty($user['id'])) {
     $userNews = $newsModel->getNewsByUser($user['id']);
     $userMessages = $database->fetchAll("SELECT * FROM messages WHERE email = ? ORDER BY created_at DESC", [$user['email']]);
     
-    // Get member since date
     $fullUser = $database->fetch("SELECT created_at FROM user WHERE id = ?", [$user['id']]);
     if ($fullUser && !empty($fullUser['created_at'])) {
         $joined = date('F j, Y', strtotime($fullUser['created_at']));
@@ -145,8 +141,6 @@ if ($user && !empty($user['id'])) {
 
     <script src="../js/main.js"></script>
     <script>
-        // Remove conflicting student-details.js logic that was overwriting content
-        // The page now uses PHP to render all content
         document.addEventListener('DOMContentLoaded', function() {
             console.log('Student dashboard loaded');
         });

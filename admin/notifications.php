@@ -7,7 +7,6 @@ require_once '../src/User.php';
 
 $db = new Database();
 $auth = new Auth(new User($db));
-// Allow students (user) and professors to view notifications; admins may also view.
 $auth->requireLogin();
 $role = $auth->getCurrentUserRole();
 if (!in_array($role, ['user', 'professor', 'admin'])) {
@@ -23,9 +22,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
     $message = $messageModel->read($_GET['id']);
 }
 
-// View-only: no create/edit/delete here. Messages are managed in manage-messages.php
-
-// Refresh messages (read-only view)
 $messages = $messageModel->read();
 ?>
 <!DOCTYPE html>
@@ -49,6 +45,7 @@ $messages = $messageModel->read();
         <div>
             <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Paneli i Menaxhimit</button>
             <button class="menu-btn <?php echo $current=='manage-news.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-news.php'">Menaxho Lajmet</button>
+            <button class="menu-btn <?php echo $current=='manage-exams.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-exams.php'">Menaxho Provimet</button>
             <button class="menu-btn <?php echo in_array($current, ['manage-users.php','manage-user.php']) ? 'active' : ''; ?>" onclick="window.location.href='manage-users.php'">Menaxho Përdoruesit</button>
             <button class="menu-btn <?php echo $current=='manage-messages.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-messages.php'">Menaxho Mesazhet</button>
             <button class="menu-btn <?php echo $current=='notifications.php' ? 'active' : ''; ?>" onclick="window.location.href='notifications.php'">Mesazhet</button>

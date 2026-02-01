@@ -41,7 +41,6 @@ $user = $auth->getCurrentUser();
     </nav>
     <div class="container">
         <?php 
-        // Formato emrin: shkronja e madhe në fillim
         $firstName = ucfirst(strtolower($user['first_name'] ?? ''));
         $lastName = ucfirst(strtolower($user['last_name'] ?? ''));
         $fullName = trim($firstName . ' ' . $lastName);

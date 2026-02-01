@@ -4,10 +4,14 @@ require_once '../config/config.php';
 require_once '../config/db.php';
 require_once '../src/Auth.php';
 require_once '../src/User.php';
+require_once '../src/Database.php';
 
 $auth = new Auth(new User($pdo));
 $auth->requireLogin();
 $user = $auth->getCurrentUser();
+
+$db = new Database();
+$exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time ASC");
 ?>
 <!DOCTYPE html>
 <html lang="sq">
@@ -95,69 +99,46 @@ $user = $auth->getCurrentUser();
             <div class="exams-card">
                 <h2>Lista e Provimeve</h2>
 
-                <!-- Exam Item Template -->
-                <div class="exam-item">
-                    <div class="exam-header">
-                        <h3>Algoritmet dhe Strukturat e të Dhënave</h3>
-                        <span class="exam-credits">6 ECTS</span>
+                <?php if (empty($exams)): ?>
+                    <p style="text-align: center; color: #666; padding: 30px;">Nuk ka provime të regjistruara për momentin.</p>
+                <?php else: ?>
+                    <?php foreach ($exams as $exam): ?>
+                    <div class="exam-item">
+                        <div class="exam-header">
+                            <h3><?php echo htmlspecialchars($exam['subject']); ?></h3>
+                        </div>
+                        <div class="exam-details">
+                            <?php if (!empty($exam['professor'])): ?>
+                            <div class="detail-row">
+                                <span class="detail-label">Profesori:</span>
+                                <span class="detail-value"><?php echo htmlspecialchars($exam['professor']); ?></span>
+                            </div>
+                            <?php endif; ?>
+                            <div class="detail-row">
+                                <span class="detail-label">Data:</span>
+                                <span class="detail-value"><?php echo date('d F Y', strtotime($exam['exam_date'])); ?></span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="detail-label">Ora:</span>
+                                <span class="detail-value"><?php echo date('H:i', strtotime($exam['exam_time'])); ?></span>
+                            </div>
+                            <?php if (!empty($exam['location'])): ?>
+                            <div class="detail-row">
+                                <span class="detail-label">Salla:</span>
+                                <span class="detail-value"><?php echo htmlspecialchars($exam['location']); ?></span>
+                            </div>
+                            <?php endif; ?>
+                            <?php if (!empty($exam['description'])): ?>
+                            <div class="detail-row">
+                                <span class="detail-label">Përshkrimi:</span>
+                                <span class="detail-value"><?php echo htmlspecialchars($exam['description']); ?></span>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                        <button class="register-btn">Paraqit Provimin</button>
                     </div>
-                    <div class="exam-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Profesori:</span>
-                            <span class="detail-value">Prof. Dr. Shkelqim Berisha</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Semestri:</span>
-                            <span class="detail-value">Semestri 2</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Data:</span>
-                            <span class="detail-value">15 Dhjetor 2025</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Ora:</span>
-                            <span class="detail-value">10:00 - 12:00</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Salla:</span>
-                            <span class="detail-value">A-201</span>
-                        </div>
-                    </div>
-                    <button class="register-btn">Paraqit Provimin</button>
-                </div>
-
-                <!-- Repeat Exam Items -->
-                <div class="exam-item">
-                    <div class="exam-header">
-                        <h3>Bazat e të Dhënave</h3>
-                        <span class="exam-credits">7 ECTS</span>
-                    </div>
-                    <div class="exam-details">
-                        <div class="detail-row">
-                            <span class="detail-label">Profesori:</span>
-                            <span class="detail-value">Prof. Dr. Elton Boshnjaku</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Semestri:</span>
-                            <span class="detail-value">Semestri 3</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Data:</span>
-                            <span class="detail-value">18 Dhjetor 2025</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Ora:</span>
-                            <span class="detail-value">14:00 - 16:00</span>
-                        </div>
-                        <div class="detail-row">
-                            <span class="detail-label">Salla:</span>
-                            <span class="detail-value">B-105</span>
-                        </div>
-                    </div>
-                    <button class="register-btn">Paraqit Provimin</button>
-                </div>
-
-                <!-- Add remaining exams here similarly -->
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

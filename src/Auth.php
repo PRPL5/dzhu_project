@@ -46,14 +46,14 @@ class Auth {
         ];
         
         if ($remember) {
-            setcookie('user_id', $user_data['id'], time() + (30 * 24 * 60 * 60), '/'); // 30 days
+            setcookie('user_id', $user_data['id'], time() + (30 * 24 * 60 * 60), '/');
         }
     }
 
     public function logout() {
         session_destroy();
         unset($_SESSION['user']);
-        setcookie('user_id', '', time() - 3600, '/'); // Delete remember me cookie
+        setcookie('user_id', '', time() - 3600, '/');
     }
 
     public function getCurrentUser() {

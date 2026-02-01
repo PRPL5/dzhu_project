@@ -13,6 +13,10 @@ $messages = $messageModel->read();
 $newMessages = array_filter($messages, function($msg) { return $msg['status'] == 'new'; });
 $messageCount = count($newMessages);
 
+$usersCount = $db->fetch("SELECT COUNT(*) as count FROM user")['count'] ?? 0;
+$newsCount = $db->fetch("SELECT COUNT(*) as count FROM news")['count'] ?? 0;
+$examsCount = $db->fetch("SELECT COUNT(*) as count FROM exams")['count'] ?? 0;
+$productsCount = $db->fetch("SELECT COUNT(*) as count FROM product")['count'] ?? 0;
 
 ?>
 <!DOCTYPE html>
@@ -196,6 +200,7 @@ footer {
             <div>
                 <button class="menu-btn <?php echo $current=='dashboard.php' ? 'active' : ''; ?>" onclick="window.location.href='dashboard.php'">Paneli i Menaxhimit</button>
                 <button class="menu-btn <?php echo $current=='manage-news.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-news.php'">Menaxho Lajmet</button>
+                <button class="menu-btn <?php echo $current=='manage-exams.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-exams.php'">Menaxho Provimet</button>
                 <button class="menu-btn <?php echo in_array($current, ['manage-users.php','manage-user.php']) ? 'active' : ''; ?>" onclick="window.location.href='manage-users.php'">Menaxho Përdoruesit</button>
                 <button class="menu-btn <?php echo $current=='manage-messages.php' ? 'active' : ''; ?>" onclick="window.location.href='manage-messages.php'">Menaxho Mesazhet</button>
                 <button class="menu-btn <?php echo $current=='notifications.php' ? 'active' : ''; ?>" onclick="window.location.href='notifications.php'">Mesazhet</button>
@@ -212,15 +217,19 @@ footer {
         <div class="dashboard-stats">
             <div class="stat">
                 <h3>Produktet</h3>
-                <p id="products-count">0</p>
+                <p id="products-count"><?php echo $productsCount; ?></p>
             </div>
             <div class="stat">
                 <h3>Lajmet</h3>
-                <p id="news-count">0</p>
+                <p id="news-count"><?php echo $newsCount; ?></p>
+            </div>
+            <div class="stat">
+                <h3>Provimet</h3>
+                <p id="exams-count"><?php echo $examsCount; ?></p>
             </div>
             <div class="stat">
                 <h3>Përdoruesit</h3>
-                <p id="users-count">0</p>
+                <p id="users-count"><?php echo $usersCount; ?></p>
             </div>
             <div class="stat">
                 <h3>Mesazhet</h3>

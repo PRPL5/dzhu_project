@@ -10,7 +10,6 @@ $db = new Database();
 $newsModel = new News($db);
 $latest = $newsModel->getLatestNews(10);
 
-// Check if user is logged in
 $auth = new Auth(new User($pdo), $pdo);
 $isLoggedIn = $auth->isLoggedIn();
 $user = $auth->getCurrentUser();
@@ -351,7 +350,7 @@ $user = $auth->getCurrentUser();
         var cards = track.querySelectorAll('.news-card');
         var index = 0;
         var autoSlideInterval;
-        var autoSlideDelay = 2000; // 4 sekonda
+        var autoSlideDelay = 2000;
         
         function getPerView() {
             if (window.innerWidth <= 768) return 1;

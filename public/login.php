@@ -17,12 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([$email]);
             $user = $stmt->fetch();
             
-            // DEBUG - heke këtë pas testimit
-            if (!$user) {
-                $error = "DEBUG: Nuk u gjet user me email: " . $email;
-            } elseif (!password_verify($password, $user['password'])) {
-                $error = "DEBUG: Password nuk përputhet. Hash: " . substr($user['password'], 0, 20) . "...";
-            } elseif ($user && password_verify($password, $user['password'])) {
+            if ($user && password_verify($password, $user['password'])) {
                 $auth = new Auth(new User($pdo), $pdo);
                 $auth->login($user, isset($_POST['remember']));
                 if ($user['role'] === 'admin') {

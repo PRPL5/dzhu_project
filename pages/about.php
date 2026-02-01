@@ -8,7 +8,6 @@ require_once '../src/User.php';
 $auth = new Auth(userClass: new User(database: $pdo));
 $user = $auth->getCurrentUser();
 
- // Static departments data since departments table is not available
  $departments = [
      [
          'id' => 1,
