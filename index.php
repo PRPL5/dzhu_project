@@ -29,7 +29,6 @@ $user = $auth->getCurrentUser();
             <button class="menu-btn" onclick="window.location.href='index.php'">Kryefaqja</button>
             <button class="menu-btn" onclick="window.location.href='pages/about.php'">Rreth Nesh</button>
             <button class="menu-btn" onclick="window.location.href='pages/studenti.php'">Studentët më të Mirë</button>
-            <button class="menu-btn" onclick="window.location.href='pages/news.php'">Lajme</button>
             <button class="menu-btn" onclick="window.location.href='pages/contact.php'">Kontakt</button>
             <?php if ($isLoggedIn) : ?>
                 <?php if ($auth->isAdmin()) : ?>

@@ -22,6 +22,8 @@ class Auth {
                     $_SESSION['user'] = [
                         'id' => $user['id'],
                         'username' => $user['username'],
+                        'first_name' => $user['first_name'],
+                        'last_name' => $user['last_name'],
                         'email' => $user['email'],
                         'role' => $user['role']
                     ];
@@ -37,6 +39,8 @@ class Auth {
         $_SESSION['user'] = [
             'id' => $user_data['id'],
             'username' => $user_data['username'],
+            'first_name' => $user_data['first_name'] ?? '',
+            'last_name' => $user_data['last_name'] ?? '',
             'email' => $user_data['email'],
             'role' => $user_data['role']
         ];

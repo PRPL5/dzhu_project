@@ -1,10 +1,19 @@
 <?php
+session_start();
+require_once '../config/db.php';
 require_once '../src/Database.php';
 require_once '../src/News.php';
+require_once '../src/Auth.php';
+require_once '../src/User.php';
 
 $db = new Database();
 $newsModel = new News($db);
 $latest = $newsModel->getLatestNews(10);
+
+// Check if user is logged in
+$auth = new Auth(new User($pdo), $pdo);
+$isLoggedIn = $auth->isLoggedIn();
+$user = $auth->getCurrentUser();
 ?>
 <!DOCTYPE html>
 <html lang="sq">
@@ -240,13 +249,27 @@ $latest = $newsModel->getLatestNews(10);
 </head>
 <body>
     <nav class="menu">
-        <img src="../img/ubt1.png" id="nav-logo" alt="UBT" onclick="window.location.href='../index.php'" style="cursor:pointer">
-        <div>
-            <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
-            <button class="menu-btn active" onclick="window.location.href='news.php'">Lajmet</button>
-            <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
-            <button class="menu-btn" onclick="window.location.href='../public/login.php'">Log In</button>
-        </div>
+        <?php if ($isLoggedIn): ?>
+            <img src="../img/ubt1.png" id="nav-logo" alt="UBT" onclick="window.location.href='main.php'" style="cursor:pointer">
+            <div>
+                <button class="menu-btn" onclick="window.location.href='student-details.php'">Paneli i Studentit</button>
+                <button class="menu-btn" onclick="window.location.href='orari.php'">Orari</button>
+                <button class="menu-btn" onclick="window.location.href='grades.php'">Notat</button>
+                <button class="menu-btn" onclick="window.location.href='provimet.php'">Provimet</button>
+                <button class="menu-btn" onclick="window.location.href='payments.php'">Pagesat</button>
+                <button class="menu-btn" onclick="window.location.href='calendar.php'">Kalendari</button>
+                <button class="menu-btn active" onclick="window.location.href='news.php'">Lajme</button>
+                <button class="menu-btn" onclick="window.location.href='../public/logout.php'">Log Out</button>
+            </div>
+        <?php else: ?>
+            <img src="../img/ubt1.png" id="nav-logo" alt="UBT" onclick="window.location.href='../index.php'" style="cursor:pointer">
+            <div>
+                <button class="menu-btn" onclick="window.location.href='../index.php'">Kryefaqja</button>
+                <button class="menu-btn active" onclick="window.location.href='news.php'">Lajmet</button>
+                <button class="menu-btn" onclick="window.location.href='contact.php'">Kontakt</button>
+                <button class="menu-btn" onclick="window.location.href='../public/login.php'">Log In</button>
+            </div>
+        <?php endif; ?>
     </nav>
 
     <div class="news-hero">

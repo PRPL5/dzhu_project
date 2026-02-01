@@ -14,7 +14,7 @@ $newsModel = new News($database);
 $messageModel = new Message($database);
 
 // Initialize authentication
-$auth = new Auth(new User($database), $database->getConnection());
+$auth = new Auth(new User($pdo), $pdo);
 $auth->requireLogin();
 $user = $auth->getCurrentUser();
 

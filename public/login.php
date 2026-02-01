@@ -16,14 +16,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare("SELECT * FROM user WHERE email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch();
-        if ($user && password_verify($password, $user['password'])) {
+            
+            // DEBUG - heke këtë pas testimit
+            if (!$user) {
+                $error = "DEBUG: Nuk u gjet user me email: " . $email;
+            } elseif (!password_verify($password, $user['password'])) {
+                $error = "DEBUG: Password nuk përputhet. Hash: " . substr($user['password'], 0, 20) . "...";
+            } elseif ($user && password_verify($password, $user['password'])) {
                 $auth = new Auth(new User($pdo), $pdo);
                 $auth->login($user, isset($_POST['remember']));
-                echo "Login successful! Welcome, " . htmlspecialchars($user['username']) . ".";
                 if ($user['role'] === 'admin') {
                     header('Location: ../admin/dashboard.php');
                 } else {
-                    header('Location: ../pages/studenti.php');
+                    header('Location: ../pages/main.php');
                 }
                 exit;
             } else {

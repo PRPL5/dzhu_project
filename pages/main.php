@@ -40,7 +40,16 @@ $user = $auth->getCurrentUser();
     </div>
     </nav>
     <div class="container">
-        <h1>Mirë se vini përsëri<br><?php echo htmlspecialchars($user['username']); ?>!</h1>
+        <?php 
+        // Formato emrin: shkronja e madhe në fillim
+        $firstName = ucfirst(strtolower($user['first_name'] ?? ''));
+        $lastName = ucfirst(strtolower($user['last_name'] ?? ''));
+        $fullName = trim($firstName . ' ' . $lastName);
+        if (empty($fullName)) {
+            $fullName = ucwords(strtolower($user['username']));
+        }
+        ?>
+        <h1>Mirë se vini përsëri<br><?php echo htmlspecialchars($fullName); ?>!</h1>
 
 
         <div class="main">

@@ -208,7 +208,7 @@ footer {
 
     <main class="container">
         <h1>Paneli i Menaxhimit</h1>
-        <p>Mirë se vini, <?php echo htmlspecialchars($auth->getCurrentUsername()); ?>!</p>
+        <p>Mirë se erdhe, Admin!</p>
         <div class="dashboard-stats">
             <div class="stat">
                 <h3>Produktet</h3>
