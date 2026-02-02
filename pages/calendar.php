@@ -46,7 +46,7 @@ $user = $auth->getCurrentUser();
     </nav>
 
     <div class="calendar-header">
-        <h1>Kalendari Akademik 2024/2025</h1>
+        <h1>Kalendari Akademik</h1>
         <p class="subtitle">Datat dhe afatet e rëndësishme për vitin akademik</p>
     </div>
 
@@ -73,17 +73,17 @@ $user = $auth->getCurrentUser();
             <div class="quick-cards">
                 <div class="quick-card">
                     <h3>Data e Ardhshme e Rëndësishme</h3>
-                    <p class="date-large">23 Jan 2025</p>
+                    <p class="date-large">23 Janar 2025</p>
                     <p>Fillimi i Mësimit të Pranverës</p>
                 </div>
                 <div class="quick-card">
                     <h3>Periudha e Regjistrimit</h3>
-                    <p class="date-large">6-20 Jan</p>
+                    <p class="date-large">6-20 Janar</p>
                     <p>Semestri i Pranverës</p>
                 </div>
                 <div class="quick-card">
                     <h3>Periudha e Ardhshme e Provimeve</h3>
-                    <p class="date-large">2-7 Qer</p>
+                    <p class="date-large">2-7 Qershor</p>
                     <p>Provimet Finale të Pranverës</p>
                 </div>
             </div>

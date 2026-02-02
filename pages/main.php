@@ -78,7 +78,7 @@ $user = $auth->getCurrentUser();
             <div class="info-text">
                 <h2>Lajme nga Shkencat Kompjuterike</h2>
                 <p>Te nderuar student ju lajmerojme qe afati i Nentorit do te mbahet me 6 Dhjetor ne UBT Dukagjini Te nderuar student ju lajmerojme qe afati i Nentorit do te mbahet me 6 Dhjetor ne UBT Dukagjini Te nderuar student ju lajmerojme qe afati i Nentorit do te mbahet me 6 Dhjetor ne UBT Dukagjini .</p>
-                <button class="learn-more-btn">Mësoni më shumë</button>
+                <button class="learn-more-btn" onclick="window.location.href='news.php'">Mësoni më shumë</button>
             </div>
             <div class="info-image">
                 <img src="../img/workspace.jpg" alt="placeholder">
@@ -92,7 +92,7 @@ $user = $auth->getCurrentUser();
             <div class="info-text">
                 <h2>Informacion Shtesë</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-                <button class="learn-more-btn">Mësoni më shumë</button>
+                <button class="learn-more-btn" onclick="window.location.href='news.php'">Mësoni më shumë</button>
             </div>
         </div>
     </div>
