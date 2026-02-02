@@ -60,6 +60,16 @@ CREATE TABLE departments (
     description LONGTEXT
 );
 
+CREATE TABLE exam_registrations (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    exam_id INT NOT NULL,
+    user_id INT NOT NULL,
+    registered_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (exam_id) REFERENCES exams(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    UNIQUE KEY unique_registration (exam_id, user_id)
+);
+
 INSERT INTO departments (name, description) VALUES
 ('Faculty of Engineering', 'Offering programs in Computer Science, Electrical Engineering, Mechanical Engineering, and Civil Engineering'),
 ('Faculty of Economics', 'Specializing in Business Administration, Economics, Finance, and Marketing'),

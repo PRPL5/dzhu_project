@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $userModel->updateUser($id, ['username' => $username, 'email' => $email]);
                 $message = 'Përdoruesi u përditësua me sukses!';
-                $user = $userModel->getUserById($id); // Refresh data
+                $user = $userModel->getUserById($id);
             } catch (Exception $e) {
                 $message = 'Gabim: ' . $e->getMessage();
             }
@@ -128,7 +128,6 @@ footer p {
     font-size: 1rem;
 }
 
-/* Additional styles for missing classes */
 .btn {
     padding: 10px 20px;
     background-color: #146AD4;

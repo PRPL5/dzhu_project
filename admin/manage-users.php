@@ -87,7 +87,6 @@ footer p {
     font-size: 1rem;
 }
 
-/* Additional styles for missing classes */
 .btn {
     padding: 10px 20px;
     background-color: #146AD4;

@@ -51,8 +51,17 @@ class Auth {
     }
 
     public function logout() {
+        $_SESSION = array();
+        
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+        
         session_destroy();
-        unset($_SESSION['user']);
         setcookie('user_id', '', time() - 3600, '/');
     }
 
@@ -89,6 +98,10 @@ class Auth {
     }
 
     public function requireLogin() {
+        header("Cache-Control: no-cache, no-store, must-revalidate");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        
         if (!$this->isLoggedIn()) {
             header('Location: ../public/login.php');
             exit('Duhet të hysh për të shikuar këtë faqe.');
@@ -96,8 +109,12 @@ class Auth {
     }
 
     public function requireAdmin() {
+        header("Cache-Control: no-cache, no-store, must-revalidate");
+        header("Pragma: no-cache");
+        header("Expires: 0");
+        
         if (!$this->isAdmin()) {
-            header('Location: ../public/index.php');
+            header('Location: ../public/login.php');
             exit('Nuk ke qasje në këtë faqe.');
         }
     }

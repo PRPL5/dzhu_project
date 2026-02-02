@@ -72,7 +72,12 @@ if (isset($_GET['edit'])) {
     $editExam = $db->fetch("SELECT * FROM exams WHERE id = ?", [$editId]);
 }
 
-$exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time ASC");
+$exams = $db->fetchAll("
+    SELECT e.*, 
+           (SELECT COUNT(*) FROM exam_registrations WHERE exam_id = e.id) as registration_count 
+    FROM exams e 
+    ORDER BY e.exam_date ASC, e.exam_time ASC
+");
 ?>
 <!DOCTYPE html>
 <html lang="sq">
@@ -233,6 +238,16 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
 
 .exams-table tr:hover {
     background-color: #f5f5f5;
+}
+
+.registration-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #28a745 0%, #20803a 100%);
+    color: white;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
 }
 
 .message {
@@ -431,6 +446,7 @@ footer {
                                 <th>Ora</th>
                                 <th>Lokacioni</th>
                                 <th>Profesori</th>
+                                <th>Regjistrimet</th>
                                 <th>Veprime</th>
                             </tr>
                         </thead>
@@ -442,6 +458,9 @@ footer {
                                 <td><?php echo date('H:i', strtotime($exam['exam_time'])); ?></td>
                                 <td><?php echo htmlspecialchars($exam['location'] ?? '-'); ?></td>
                                 <td><?php echo htmlspecialchars($exam['professor'] ?? '-'); ?></td>
+                                <td>
+                                    <span class="registration-badge"><?php echo $exam['registration_count']; ?> studentë</span>
+                                </td>
                                 <td class="actions">
                                     <a href="?edit=<?php echo $exam['id']; ?>" class="btn btn-edit">Ndrysho</a>
                                     <a href="?delete=<?php echo $exam['id']; ?>" class="btn btn-delete" 

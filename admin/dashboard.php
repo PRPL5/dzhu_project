@@ -16,7 +16,6 @@ $messageCount = count($newMessages);
 $usersCount = $db->fetch("SELECT COUNT(*) as count FROM user")['count'] ?? 0;
 $newsCount = $db->fetch("SELECT COUNT(*) as count FROM news")['count'] ?? 0;
 $examsCount = $db->fetch("SELECT COUNT(*) as count FROM exams")['count'] ?? 0;
-$productsCount = $db->fetch("SELECT COUNT(*) as count FROM product")['count'] ?? 0;
 
 ?>
 <!DOCTYPE html>
@@ -184,12 +183,6 @@ footer {
     text-align: center;
 }
 
-/* footer p {
-    margin: 0;
-    font-size: 1rem;
-} */
-
-/* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -289,10 +282,6 @@ footer {
         <h1>Paneli i Menaxhimit</h1>
         <p>Mirë se erdhe, Admin!</p>
         <div class="dashboard-stats">
-            <div class="stat">
-                <h3>Produktet</h3>
-                <p id="products-count"><?php echo $productsCount; ?></p>
-            </div>
             <div class="stat">
                 <h3>Lajmet</h3>
                 <p id="news-count"><?php echo $newsCount; ?></p>

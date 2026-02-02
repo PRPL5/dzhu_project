@@ -10,7 +10,7 @@ $auth = new Auth(new User($db));
 $auth->requireAdmin();
 
 $messageModel = new Message($db);
-$messages = $messageModel->read(); // all messages
+$messages = $messageModel->read();
 
 $message = null;
 if (isset($_GET['action']) && $_GET['action'] == 'edit' && isset($_GET['id'])) {
@@ -112,7 +112,6 @@ footer p {
     font-size: 1rem;
 }
 
-/* Additional styles for missing classes */
 .btn {
     padding: 10px 20px;
     background-color: #146AD4;

@@ -11,14 +11,45 @@ $auth->requireLogin();
 $user = $auth->getCurrentUser();
 
 $db = new Database();
+
+$successMessage = '';
+$errorMessage = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_exam'])) {
+    $examId = (int)$_POST['exam_id'];
+    $userId = $user['id'];
+    
+    $existing = $db->fetch("SELECT id FROM exam_registrations WHERE exam_id = ? AND user_id = ?", [$examId, $userId]);
+    
+    if ($existing) {
+        $errorMessage = "Ju tashmë jeni regjistruar për këtë provim!";
+    } else {
+        $db->insert('exam_registrations', [
+            'exam_id' => $examId,
+            'user_id' => $userId
+        ]);
+        $successMessage = "Provimi u paraqit me sukses!";
+    }
+}
+
 $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time ASC");
+
+$professors = $db->fetchAll("SELECT DISTINCT professor FROM exams WHERE professor IS NOT NULL AND professor != '' ORDER BY professor");
+
+$registeredExamIds = [];
+if ($user) {
+    $registrations = $db->fetchAll("SELECT exam_id FROM exam_registrations WHERE user_id = ?", [$user['id']]);
+    foreach ($registrations as $reg) {
+        $registeredExamIds[] = $reg['exam_id'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="sq">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/provimet.css?v=3">
+    <link rel="stylesheet" href="../css/provimet.css?v=5">
     <title>Provimet</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +75,25 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
         </div>
     </nav>
 
+    <?php if ($successMessage): ?>
+    <div class="alert alert-success" id="successAlert">
+        <span class="alert-icon">✓</span>
+        <?php echo $successMessage; ?>
+    </div>
+    <?php endif; ?>
+    
+    <?php if ($errorMessage): ?>
+    <div class="alert alert-error" id="errorAlert">
+        <span class="alert-icon">!</span>
+        <?php echo $errorMessage; ?>
+    </div>
+    <?php endif; ?>
+
     <h1>Provimet e Mbetura</h1>
+    
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="my-exams.php" class="view-registered-btn">Shiko Provimet e Paraqitura</a>
+    </div>
 
     <div class="provimet-container">
         <!-- Filters Section -->
@@ -75,12 +124,10 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
                 <div class="filter-group">
                     <label for="profesori">Profesori:</label>
                     <select id="profesori" class="filter-select">
-                        <option value="">Zgjedh Profesorin</option>
-                        <option value="prof1">Prof. Dr. Shkelqim Berisha</option>
-                        <option value="prof2">Prof. Dr. Elton Boshnjaku</option>
-                        <option value="prof3">Prof. Dr. Erzen Talla</option>
-                        <option value="prof4">Prof. Dr. Blerim Zylfiue</option>
-                        <option value="prof5">Prof. Dr. Blerton Abazi</option>
+                        <option value="">Të gjithë Profesorët</option>
+                        <?php foreach ($professors as $prof): ?>
+                        <option value="<?php echo htmlspecialchars($prof['professor']); ?>"><?php echo htmlspecialchars($prof['professor']); ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -94,8 +141,8 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
                         <option value="nentor">Nëntor</option>
                     </select>
                 </div>
-                <button class="filter-btn">Apliko Filtrat</button>
-                <button class="reset-btn">Reseto</button>
+                <button class="filter-btn" onclick="applyFilters()">Apliko Filtrat</button>
+                <button class="reset-btn" onclick="resetFilters()">Reseto</button>
             </div>
         </div>
 
@@ -107,8 +154,21 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
                 <?php if (empty($exams)): ?>
                     <p style="text-align: center; color: #666; padding: 30px;">Nuk ka provime të regjistruara për momentin.</p>
                 <?php else: ?>
-                    <?php foreach ($exams as $exam): ?>
-                    <div class="exam-item">
+                    <?php foreach ($exams as $exam): 
+                        $examMonth = date('n', strtotime($exam['exam_date']));
+                        $afati = '';
+                        if ($examMonth >= 1 && $examMonth <= 2) $afati = 'shkurt';
+                        elseif ($examMonth >= 3 && $examMonth <= 4) $afati = 'prill';
+                        elseif ($examMonth >= 5 && $examMonth <= 6) $afati = 'qershor';
+                        elseif ($examMonth >= 9 && $examMonth <= 10) $afati = 'shtator';
+                        elseif ($examMonth >= 11 && $examMonth <= 12) $afati = 'nentor';
+                        
+                        $examYear = date('Y', strtotime($exam['exam_date']));
+                    ?>
+                    <div class="exam-item" 
+                         data-professor="<?php echo htmlspecialchars($exam['professor'] ?? ''); ?>"
+                         data-afati="<?php echo $afati; ?>"
+                         data-year="<?php echo $examYear; ?>">
                         <div class="exam-header">
                             <h3><?php echo htmlspecialchars($exam['subject']); ?></h3>
                         </div>
@@ -140,7 +200,14 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
                             </div>
                             <?php endif; ?>
                         </div>
-                        <button class="register-btn">Paraqit Provimin</button>
+                        <?php if (in_array($exam['id'], $registeredExamIds)): ?>
+                            <button class="register-btn registered" disabled>✓ I Paraqitur</button>
+                        <?php else: ?>
+                            <form method="POST" style="display: inline;">
+                                <input type="hidden" name="exam_id" value="<?php echo $exam['id']; ?>">
+                                <button type="submit" name="register_exam" class="register-btn">Paraqit Provimin</button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                     <?php endforeach; ?>
                 <?php endif; ?>
@@ -150,5 +217,70 @@ $exams = $db->fetchAll("SELECT * FROM exams ORDER BY exam_date ASC, exam_time AS
 
     <footer class="footer"></footer>
     <script src="../js/main.js?v=3"></script>
+    <script>
+        setTimeout(function() {
+            var alerts = document.querySelectorAll('.alert');
+            alerts.forEach(function(alert) {
+                alert.style.opacity = '0';
+                setTimeout(function() { alert.remove(); }, 500);
+            });
+        }, 4000);
+        
+        function applyFilters() {
+            var profesori = document.getElementById('profesori').value.toLowerCase();
+            var afati = document.getElementById('afati').value.toLowerCase();
+            var viti = document.getElementById('viti').value;
+            
+            var examItems = document.querySelectorAll('.exam-item');
+            var visibleCount = 0;
+            
+            examItems.forEach(function(item) {
+                var itemProfessor = (item.getAttribute('data-professor') || '').toLowerCase();
+                var itemAfati = (item.getAttribute('data-afati') || '').toLowerCase();
+                var itemYear = item.getAttribute('data-year') || '';
+                
+                var showProfessor = !profesori || itemProfessor.includes(profesori);
+                var showAfati = !afati || itemAfati === afati;
+                var showYear = !viti || itemYear === viti;
+                
+                if (showProfessor && showAfati && showYear) {
+                    item.style.display = 'block';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            var noResultsMsg = document.getElementById('no-filter-results');
+            if (visibleCount === 0) {
+                if (!noResultsMsg) {
+                    var msg = document.createElement('p');
+                    msg.id = 'no-filter-results';
+                    msg.style.cssText = 'text-align: center; color: #666; padding: 30px; font-size: 1.1rem;';
+                    msg.textContent = 'Nuk u gjetën provime me këto filtra.';
+                    document.querySelector('.exams-card').appendChild(msg);
+                }
+            } else if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        }
+        
+        function resetFilters() {
+            document.getElementById('semestri').value = '';
+            document.getElementById('viti').value = '';
+            document.getElementById('profesori').value = '';
+            document.getElementById('afati').value = '';
+            
+            var examItems = document.querySelectorAll('.exam-item');
+            examItems.forEach(function(item) {
+                item.style.display = 'block';
+            });
+            
+            var noResultsMsg = document.getElementById('no-filter-results');
+            if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        }
+    </script>
 </body>
 </html>

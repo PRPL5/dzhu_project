@@ -32,7 +32,6 @@ $messages = $messageModel->read();
     <title>Mesazhet - DZHU Admin</title>
     <link rel="stylesheet" href="../css/styles.css">
     <style>
-    /* small page-specific tweaks */
     .container { max-width: 100%; margin: 0 auto; padding: 40px 20px; }
     .announcement-content { white-space: pre-wrap; }
     .message-meta { margin-top:12px; font-size:0.9rem; color:#555; display:flex; gap:12px; }
